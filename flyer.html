@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC Robotics Flyer</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<style>
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 8.5in;
+    height: 11in;
+    margin: 0 auto;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-family: 'Roboto Mono', monospace;
+    overflow: hidden;
+    position: relative;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @media print {
+    html, body {
+      width: 8.5in;
+      height: 11in;
+      margin: 0;
+    }
+  }
+
+
+  .flyer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 60px 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Top red accent line */
+  .top-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: #c3080f;
+  }
+
+  /* Logo section */
+  .logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .logo-img {
+    width: 280px;
+    height: auto;
+  }
+
+  .team-name {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 800;
+    font-size: 52px;
+    text-align: center;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+  }
+
+  .team-subtitle {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: -5px;
+  }
+
+  /* CTA section */
+  .cta-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cta-text {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    color: #c3080f;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .cta-subtext {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
+  /* QR codes section */
+  .qr-section {
+    display: flex;
+    gap: 100px;
+    align-items: flex-start;
+  }
+
+  .qr-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .qr-wrapper {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .qr-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #c3080f;
+  }
+
+  .qr-wrapper canvas {
+    display: block;
+  }
+
+  .qr-label {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .qr-icon-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .qr-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .qr-url {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.35);
+    text-align: center;
+    margin-top: -12px;
+  }
+
+  /* Bottom section */
+  .bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .divider {
+    width: 120px;
+    height: 2px;
+    background: #c3080f;
+  }
+
+  .bottom-text {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-align: center;
+  }
+
+  /* Bottom red accent */
+  .bottom-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: #c3080f;
+  }
+
+  /* Discord icon color */
+  .discord-color { color: #5865F2; }
+
+</style>
+</head>
+<body>
+  <div class="top-accent"></div>
+
+  <div class="flyer">
+    <!-- Logo -->
+    <div class="logo-section">
+      <img class="logo-img" src="./sc-robotics-logo-dark-text.png" alt="SC Robotics Logo">
+      <div class="team-name">Saddleback College<br>Robotics</div>
+      <div class="team-subtitle">University Rover Challenge</div>
+      <div class="team-subtitle">Est. 2018</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <div class="cta-text">Join Us!</div>
+      <div class="cta-subtext">Scan a QR code to get started</div>
+    </div>
+
+    <!-- QR Codes -->
+    <div class="qr-section">
+      <div class="qr-card">
+        <div class="qr-wrapper">
+          <canvas id="qr-discord"></canvas>
+        </div>
+        <div class="qr-icon-label">
+          <svg class="qr-icon" viewBox="0 0 24 24" fill="#5865F2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          <span class="qr-label">Join Our Discord</span>
+        </div>
+        <div class="qr-url">discord.gg/USzmfYwAUa</div>
+      </div>
+
+      <div class="qr-card">
+        <div class="qr-wrapper">
+          <canvas id="qr-website"></canvas>
+        </div>
+        <div class="qr-icon-label">
+          <svg class="qr-icon" viewBox="0 0 24 24" fill="#c3080f"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          <span class="qr-label">Visit Our Website</span>
+        </div>
+        <div class="qr-url">saddlebackcollegerobotics.com</div>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="bottom-section">
+      <div class="divider"></div>
+      <div class="bottom-text">Saddleback College &bull; Mission Viejo, CA</div>
+    </div>
+  </div>
+
+  <div class="bottom-accent"></div>
+
+  <script>
+    function generateQR(elementId, data, size) {
+      var qr = qrcode(0, 'M');
+      qr.addData(data);
+      qr.make();
+
+      var canvas = document.getElementById(elementId);
+      var ctx = canvas.getContext('2d');
+      var moduleCount = qr.getModuleCount();
+      var cellSize = Math.floor(size / moduleCount);
+      canvas.width = cellSize * moduleCount;
+      canvas.height = cellSize * moduleCount;
+
+      for (var row = 0; row < moduleCount; row++) {
+        for (var col = 0; col < moduleCount; col++) {
+          ctx.fillStyle = qr.isDark(row, col) ? '#1a1a1a' : '#ffffff';
+          ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+
+    generateQR('qr-discord', 'https://discord.gg/USzmfYwAUa', 250);
+    generateQR('qr-website', 'https://saddlebackcollegerobotics.com', 250);
+  </script>
+</body>
+</html>
