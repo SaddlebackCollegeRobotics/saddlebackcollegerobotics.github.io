@@ -1,0 +1,32 @@
+[     134ms] [WARNING] Unrecognized feature: 'web-share'. @ http://localhost:8780/index.html#join:325
+[     249ms] [LOG] JQMIGRATE: Migrate is installed, version 3.4.0 @ http://localhost:8780/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0:1
+[     812ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8780/wp-content/themes/blocksy/static/bundle/index.html6.48db047398a5c890eb67.js:0
+[     813ms] ChunkLoadError: Loading chunk 6 failed.
+(error: http://localhost:8780/wp-content/themes/blocksy/static/bundle/index.html6.48db047398a5c890eb67.js)
+    at o.e (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:1:1127)
+    at load (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:6:18330)
+    at HTMLDocument.n (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:1:4631)
+[  125759ms] [WARNING] Unrecognized feature: 'web-share'. @ http://localhost:8780/index.html#join:325
+[  125885ms] [LOG] JQMIGRATE: Migrate is installed, version 3.4.0 @ http://localhost:8780/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0:1
+[  126658ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8780/wp-content/themes/blocksy/static/bundle/index.html6.48db047398a5c890eb67.js:0
+[  126659ms] ChunkLoadError: Loading chunk 6 failed.
+(error: http://localhost:8780/wp-content/themes/blocksy/static/bundle/index.html6.48db047398a5c890eb67.js)
+    at o.e (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:1:1127)
+    at load (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:6:18330)
+    at HTMLDocument.n (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:1:4631)
+[  136571ms] [WARNING] Unrecognized feature: 'web-share'. @ http://localhost:8780/index.html#join:325
+[  136619ms] [LOG] JQMIGRATE: Migrate is installed, version 3.4.0 @ http://localhost:8780/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0:1
+[  137741ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8780/wp-content/themes/blocksy/static/bundle/index.html6.48db047398a5c890eb67.js:0
+[  137741ms] ChunkLoadError: Loading chunk 6 failed.
+(error: http://localhost:8780/wp-content/themes/blocksy/static/bundle/index.html6.48db047398a5c890eb67.js)
+    at o.e (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:1:1127)
+    at load (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:6:18330)
+    at HTMLDocument.n (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:1:4631)
+[  146874ms] [WARNING] Unrecognized feature: 'web-share'. @ http://localhost:8780/index.html#join:325
+[  146926ms] [LOG] JQMIGRATE: Migrate is installed, version 3.4.0 @ http://localhost:8780/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0:1
+[  147457ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:8780/wp-content/themes/blocksy/static/bundle/index.html6.48db047398a5c890eb67.js:0
+[  147458ms] ChunkLoadError: Loading chunk 6 failed.
+(error: http://localhost:8780/wp-content/themes/blocksy/static/bundle/index.html6.48db047398a5c890eb67.js)
+    at o.e (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:1:1127)
+    at load (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:6:18330)
+    at HTMLDocument.n (http://localhost:8780/wp-content/themes/blocksy/static/bundle/main.js?ver=1.8.36:1:4631)

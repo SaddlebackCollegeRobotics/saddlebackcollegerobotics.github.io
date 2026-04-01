@@ -1,0 +1,26 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e5]: Saddleback College Robotics
+    - generic [ref=e6]:
+      - text: University Rover Challenge
+      - text: URC 2026 · Est. 2018
+  - img "Science Collection System Drawing" [ref=e12]
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: University Rover Challenge
+        - generic [ref=e17]:
+          - text: Eyes on
+          - text: Mars.
+      - generic [ref=e18]:
+        - text: 26-SCI-COL-A001
+        - text: Science Collection System
+        - text: Saddleback College Robotics
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]: Discord
+        - generic [ref=e22]: discord.gg/USzmfYwAUa
+      - generic [ref=e23]:
+        - generic [ref=e24]: Website
+        - generic [ref=e25]: saddlebackcollegerobotics.github.io
+      - generic [ref=e26]: Join Us!
