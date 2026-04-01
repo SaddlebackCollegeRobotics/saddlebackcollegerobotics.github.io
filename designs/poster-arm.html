@@ -46,6 +46,10 @@
     border-bottom: 1px solid rgba(0,0,0,0.08);
   }
 
+  .club-sub {
+    text-align: right;
+  }
+
   .club-logo {
     height: 44px;
     width: auto;
@@ -84,11 +88,10 @@
     background-size: 40px 40px;
   }
 
-  .svg-zone img {
-    /* Scale up for full drama — arm crops slightly at edges */
+  .svg-zone svg {
     width: 120%;
     height: 120%;
-    object-fit: contain;
+    flex-shrink: 0;
   }
 
   /* Bottom band */
@@ -164,13 +167,10 @@
 
   <div class="header">
     <img class="club-logo" src="../assets/sc-robotics-logo-dark-text.png" alt="SC Robotics">
-    <div class="club-name">Saddleback College Robotics</div>
     <div class="club-sub">University Rover Challenge &nbsp;·&nbsp; Est. 2018</div>
   </div>
 
-  <div class="svg-zone">
-    <img src="./NewArm.svg" alt="Rover Arm">
-  </div>
+  <div class="svg-zone" id="svg-zone"></div>
 
   <div class="bottom-band">
     <div class="headline">
@@ -195,6 +195,19 @@
 
   <div class="bottom-bar"></div>
 </div>
+
+<script>
+  // Inline the SVG so we can adjust its viewBox to correct the off-center arm
+  fetch('./NewArm.svg')
+    .then(r => r.text())
+    .then(text => {
+      document.getElementById('svg-zone').innerHTML = text;
+      const svg = document.querySelector('#svg-zone svg');
+      // Original viewBox is "0 0 792 612". Shift window right by 80px
+      // so the arm content appears shifted left.
+      svg.setAttribute('viewBox', '80 -30 792 612');
+    });
+</script>
 
 <script>
   (function() {
