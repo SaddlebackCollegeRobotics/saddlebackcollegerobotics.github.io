@@ -57,20 +57,12 @@
     flex-shrink: 0;
   }
 
-  .club-name {
-    font-family: 'Lexend Deca', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.75);
-  }
-
   .club-sub {
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.55);
+    text-align: right;
   }
 
   /* SVG fills most of the poster */
@@ -83,19 +75,6 @@
     justify-content: center;
   }
 
-  /* Subtle red glow */
-  .svg-zone::before {
-    content: '';
-    position: absolute;
-    width: 80%;
-    height: 80%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(ellipse, rgba(195,8,15,0.15) 0%, transparent 65%);
-    pointer-events: none;
-    z-index: 1;
-  }
 
   .svg-zone img {
     /* Fill the zone — scale up past container edges for dramatic crop */
@@ -149,16 +128,16 @@
   }
 
   .footer-label {
-    font-size: 9px;
+    font-size: 8px;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,0.25);
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.5);
   }
 
   .footer-value {
     font-size: 12px;
     font-weight: 600;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.85);
   }
 
   .footer-value.accent { color: #c3080f; }
@@ -170,8 +149,18 @@
     flex-shrink: 0;
   }
 
-  .qr-item canvas { display: block; }
-  .qr-item .footer-label { text-align: center; margin-top: 5px; }
+  .drawing-ref {
+    position: absolute;
+    bottom: 14px;
+    right: 28px;
+    text-align: right;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    line-height: 1.7;
+  }
+
 </style>
 </head>
 <body>
@@ -180,12 +169,15 @@
 
   <div class="header">
     <img class="club-logo" src="../assets/sc-robotics-logo-light-text.png" alt="SC Robotics">
-    <div class="club-name">Saddleback College Robotics</div>
-    <div class="club-sub">University Rover Challenge &nbsp;·&nbsp; Est. 2018</div>
+    <div class="club-sub">Est. 2018</div>
   </div>
 
   <div class="svg-zone">
     <img src="./wheel.svg" alt="Rover Wheel">
+    <div class="drawing-ref">
+      26_SCR_WHEEL<br>
+      Drive Wheel Assembly
+    </div>
   </div>
 
   <div class="bottom-band">
@@ -195,16 +187,15 @@
     <div class="divider"></div>
     <div class="footer-row">
       <div class="footer-item">
-        <div class="footer-label">Discord</div>
-        <div class="footer-value accent">discord.gg/USzmfYwAUa</div>
+        <img src="../assets/urc-logo-dark.png" alt="University Rover Challenge" style="height:30px; width:auto;">
       </div>
       <div class="footer-item">
-        <div class="footer-label">Competition</div>
-        <div class="footer-value">URC · Mars Desert Research Station</div>
+        <div class="footer-label">Open to</div>
+        <div class="footer-value">All Saddleback &amp; IVC Students</div>
       </div>
-      <div class="footer-item qr-item">
+      <div class="footer-item" style="display:flex; flex-direction:row; align-items:center; gap:12px;">
+        <div class="footer-label">saddlebackcollegerobotics.com</div>
         <canvas id="qr_site_poster_wheel"></canvas>
-        <div class="footer-label">Website</div>
       </div>
     </div>
   </div>
@@ -224,18 +215,14 @@
     var ctx = canvas.getContext('2d');
     var modules = qr.getModuleCount();
     var cell = size / modules;
-    var isDark = canvas.closest
-      ? (getComputedStyle(document.body).backgroundColor.includes('10, 10, 10') || getComputedStyle(document.body).backgroundColor === 'rgb(10, 10, 10)')
-      : false;
-    var bg = isDark ? '#0a0a0a' : '#ffffff';
-    var fg = isDark ? '#ffffff' : '#0a0a0a';
-    ctx.fillStyle = bg;
+    var cellSize = Math.ceil(cell);
+    ctx.fillStyle = '#0a0a0a';
     ctx.fillRect(0, 0, size, size);
-    ctx.fillStyle = fg;
+    ctx.fillStyle = '#ffffff';
     for (var r = 0; r < modules; r++) {
       for (var c = 0; c < modules; c++) {
         if (qr.isDark(r, c)) {
-          ctx.fillRect(Math.floor(c * cell), Math.floor(r * cell), Math.ceil(cell), Math.ceil(cell));
+          ctx.fillRect(Math.floor(c * cell), Math.floor(r * cell), cellSize, cellSize);
         }
       }
     }

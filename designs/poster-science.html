@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SC Robotics — Eyes on Mars</title>
+<title>SC Robotics — Dig Deeper</title>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@600;700;800;900&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -13,8 +13,8 @@
   html, body {
     width: 8.5in;
     height: 11in;
-    background: #0a0a0a;
-    color: #ffffff;
+    background: #ffffff;
+    color: #0a0a0a;
     font-family: 'Roboto Mono', monospace;
     overflow: hidden;
     -webkit-print-color-adjust: exact;
@@ -43,7 +43,7 @@
     justify-content: space-between;
     padding: 22px 56px;
     flex-shrink: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
   }
 
   .club-logo {
@@ -53,20 +53,12 @@
     flex-shrink: 0;
   }
 
-  .club-name {
-    font-family: 'Lexend Deca', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.75);
-  }
-
   .club-sub {
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.3);
+    text-align: right;
   }
 
   /* SVG zone */
@@ -77,24 +69,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Blueprint grid */
     background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-    background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   .svg-zone img {
-    width: 120%;
-    height: 120%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    /* White lines on black */
-    filter: invert(1) brightness(0.85);
   }
 
-  /* Drawing ref label — bottom right corner of SVG zone */
+  /* Drawing ref label */
   .drawing-ref {
     position: absolute;
     bottom: 14px;
@@ -103,14 +90,14 @@
     font-size: 9px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.18);
+    color: rgba(0,0,0,0.18);
     line-height: 1.7;
   }
 
   /* Bottom band */
   .bottom-band {
     flex-shrink: 0;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(0,0,0,0.1);
     padding: 0 56px;
   }
 
@@ -121,18 +108,18 @@
     line-height: 0.88;
     text-transform: uppercase;
     letter-spacing: -3px;
-    color: #ffffff;
+    color: #0a0a0a;
     padding-top: 16px;
   }
 
-  .headline .word-mars {
+  .headline .word-deeper {
     color: #c3080f;
   }
 
   .divider {
     width: 100%;
     height: 1px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.1);
     margin: 16px 0 14px;
   }
 
@@ -150,16 +137,16 @@
   }
 
   .footer-label {
-    font-size: 9px;
+    font-size: 8px;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+    color: rgba(0,0,0,0.3);
   }
 
   .footer-value {
     font-size: 12px;
     font-weight: 600;
-    color: rgba(255,255,255,0.6);
+    color: rgba(0,0,0,0.65);
   }
 
   .footer-value.accent { color: #c3080f; }
@@ -171,8 +158,6 @@
     flex-shrink: 0;
   }
 
-  .qr-item canvas { display: block; }
-  .qr-item .footer-label { text-align: center; margin-top: 5px; }
 </style>
 </head>
 <body>
@@ -180,9 +165,8 @@
   <div class="top-bar"></div>
 
   <div class="header">
-    <img class="club-logo" src="../assets/sc-robotics-logo-light-text.png" alt="SC Robotics">
-    <div class="club-name">Saddleback College Robotics</div>
-    <div class="club-sub">University Rover Challenge &nbsp;·&nbsp; Est. 2018</div>
+    <img class="club-logo" src="../assets/sc-robotics-logo-dark-text.png" alt="SC Robotics">
+    <div class="club-sub">Est. 2018</div>
   </div>
 
   <div class="svg-zone">
@@ -195,21 +179,20 @@
 
   <div class="bottom-band">
     <div class="headline">
-      Eyes on<br><span class="word-mars">Mars.</span>
+      Dig<br><span class="word-deeper">Deeper.</span>
     </div>
     <div class="divider"></div>
     <div class="footer-row">
       <div class="footer-item">
-        <div class="footer-label">Discord</div>
-        <div class="footer-value accent">discord.gg/USzmfYwAUa</div>
+        <img src="../assets/urc-logo.png" alt="University Rover Challenge" style="height:30px; width:auto; opacity:0.7;">
       </div>
       <div class="footer-item">
         <div class="footer-label">Open to</div>
-        <div class="footer-value">All Saddleback Students</div>
+        <div class="footer-value">All Saddleback &amp; IVC Students</div>
       </div>
-      <div class="footer-item qr-item">
+      <div class="footer-item" style="display:flex; flex-direction:row; align-items:center; gap:12px;">
+        <div class="footer-label">saddlebackcollegerobotics.com</div>
         <canvas id="qr_site_poster_science"></canvas>
-        <div class="footer-label">Website</div>
       </div>
     </div>
   </div>
@@ -229,18 +212,14 @@
     var ctx = canvas.getContext('2d');
     var modules = qr.getModuleCount();
     var cell = size / modules;
-    var isDark = canvas.closest
-      ? (getComputedStyle(document.body).backgroundColor.includes('10, 10, 10') || getComputedStyle(document.body).backgroundColor === 'rgb(10, 10, 10)')
-      : false;
-    var bg = isDark ? '#0a0a0a' : '#ffffff';
-    var fg = isDark ? '#ffffff' : '#0a0a0a';
-    ctx.fillStyle = bg;
+    var cellSize = Math.ceil(cell);
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, size, size);
-    ctx.fillStyle = fg;
+    ctx.fillStyle = '#0a0a0a';
     for (var r = 0; r < modules; r++) {
       for (var c = 0; c < modules; c++) {
         if (qr.isDark(r, c)) {
-          ctx.fillRect(Math.floor(c * cell), Math.floor(r * cell), Math.ceil(cell), Math.ceil(cell));
+          ctx.fillRect(Math.floor(c * cell), Math.floor(r * cell), cellSize, cellSize);
         }
       }
     }

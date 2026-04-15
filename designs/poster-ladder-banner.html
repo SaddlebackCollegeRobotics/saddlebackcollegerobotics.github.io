@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC Robotics — Ladder of Life Detection (48x18 Banner)</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@600;700;800;900&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: 48in 18in; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 48in;
+    height: 18in;
+    background: #ffffff;
+    color: #0a0a0a;
+    font-family: 'Roboto Mono', monospace;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .poster {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* ═══════════════ LEFT SIDEBAR ═══════════════ */
+  .left-sidebar {
+    width: 3.6in;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    background: #0a0a0a;
+  }
+
+  .left-bar {
+    width: 0.3in;
+    height: 100%;
+    background: #FC3D21;
+    flex-shrink: 0;
+  }
+
+  .left-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3in;
+    padding: 0.3in 0.15in;
+  }
+
+  .left-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25in;
+  }
+
+  .club-logo { height: 80px; width: auto; object-fit: contain; }
+  .urc-logo { height: 44px; width: auto; }
+
+  .sidebar-title {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 900;
+    font-size: 0.48in;
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .sidebar-title .accent { color: #c3080f; }
+  .sidebar-title .nasa-accent { color: #FC3D21; }
+
+  .sidebar-sub {
+    font-size: 0.18in;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  .nasa-logo { height: 60px; width: auto; display: block; margin: 0 auto; }
+
+  .nasa-qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nasa-qr-section canvas { display: block; }
+
+  .nasa-qr-label {
+    font-size: 0.2in;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #FC3D21;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .nasa-qr-url {
+    font-size: 0.14in;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    word-break: break-all;
+    line-height: 1.4;
+  }
+
+  .life-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .life-indicator .arrow-up { color: #c3080f; font-size: 0.35in; line-height: 1; }
+
+  .life-indicator .label-life {
+    color: #c3080f;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    letter-spacing: 10px;
+    font-size: 0.35in;
+  }
+
+  .life-indicator .divider-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    margin: 16px 0;
+  }
+
+  .life-indicator .label-susp {
+    color: rgba(255,255,255,0.3);
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    letter-spacing: 4px;
+    font-size: 0.16in;
+  }
+
+  .life-indicator .arrow-down { color: rgba(255,255,255,0.3); font-size: 0.25in; line-height: 1; }
+
+  .left-bottom .source-label {
+    font-size: 0.15in;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* ═══════════════ TABLE AREA ═══════════════ */
+  .table-area {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
+    background-size: 24px 24px;
+    padding: 12px 16px;
+  }
+
+  table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  /* Column widths */
+  col.col-rung        { width: 6%; }
+  col.col-feature     { width: 12%; }
+  col.col-measurement { width: 11%; }
+  col.col-target      { width: 5.5%; }
+  col.col-likelihood  { width: 8%; }
+  col.col-quant       { width: 7%; }
+  col.col-contam      { width: 6.5%; }
+  col.col-repeat      { width: 7.5%; }
+  col.col-detect      { width: 5.5%; }
+  col.col-survive     { width: 6.5%; }
+  col.col-reliable    { width: 10%; }
+  col.col-compat      { width: 6%; }
+  col.col-lastresort  { width: 6%; }
+
+  th, td {
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 0.12in 0.14in;
+    vertical-align: top;
+    line-height: 1.35;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* ── Header rows ── */
+  thead th {
+    background: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 700;
+    font-size: 0.28in;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    vertical-align: middle;
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  thead tr:first-child th {
+    font-size: 0.32in;
+    letter-spacing: 4px;
+    padding: 0.16in 0.14in;
+  }
+
+  /* Gradient header: red on left fading to orange on right */
+  thead tr:first-child { background: linear-gradient(to right, #FC3D21 0%, #c3080f 100%); }
+  thead tr:first-child th { background: transparent; }
+  thead th.instrumental { background: transparent; }
+  thead th.contextual   { background: transparent; }
+
+  thead tr.sub-header th {
+    background: #333333;
+    font-size: 0.16in;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    padding: 0.12in 0.1in;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.5);
+  }
+
+  thead tr.sub-header th .sub-title {
+    display: block;
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 700;
+    font-size: 0.22in;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    margin-bottom: 0.06in;
+  }
+
+  /* ── Rung name cells ── */
+  td.rung-name {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 800;
+    font-size: 0.22in;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #FC3D21;
+    background: rgba(252,61,33,0.03);
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  /* ── Data cells ── */
+  td.feature {
+    font-size: 0.19in;
+    color: rgba(0,0,0,0.65);
+    font-weight: 500;
+  }
+
+  td.measurement {
+    font-size: 0.18in;
+    color: rgba(0,0,0,0.5);
+  }
+
+  td.target {
+    font-size: 0.16in;
+    color: rgba(0,0,0,0.4);
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+  }
+
+  td.likelihood {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 0.18in;
+  }
+
+  .lh-no     { color: #999; }
+  .lh-low    { color: #b8860b; }
+  .lh-lowmed { color: #cc7722; }
+  .lh-med    { color: #d4691e; }
+  .lh-medhigh{ color: #c44b1a; }
+  .lh-high   { color: #FC3D21; }
+
+  td.criteria {
+    font-size: 0.17in;
+    color: rgba(0,0,0,0.45);
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  td.criteria-long {
+    font-size: 0.16in;
+    color: rgba(0,0,0,0.45);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 1.4;
+  }
+
+  td.repeatable-merged {
+    font-size: 0.16in;
+    color: rgba(0,0,0,0.4);
+    text-align: center;
+    vertical-align: middle;
+    background: rgba(0,0,0,0.02);
+    line-height: 1.6;
+    padding: 0.14in;
+    border-left: 2px solid rgba(0,0,0,0.08);
+    border-right: 2px solid rgba(0,0,0,0.08);
+  }
+
+  td.dash {
+    text-align: center;
+    vertical-align: middle;
+    color: rgba(0,0,0,0.15);
+    font-size: 0.28in;
+  }
+
+  /* Alternating rows */
+  tbody tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+  tbody tr:nth-child(even) td.rung-name { background: rgba(252,61,33,0.05); }
+
+  /* Habitability row */
+  tr.habitability-row td {
+    background: rgba(252,61,33,0.04);
+    font-size: 0.19in;
+    color: rgba(0,0,0,0.5);
+    vertical-align: middle;
+    border-top: 3px solid rgba(252,61,33,0.2);
+  }
+
+  /* Footer notes row */
+  tr.notes-row td {
+    font-size: 0.14in;
+    color: rgba(0,0,0,0.4);
+    line-height: 1.5;
+    padding: 0.12in 0.14in;
+    border: none;
+    background: rgba(0,0,0,0.025);
+  }
+
+  /* ═══════════════ RIGHT SIDEBAR ═══════════════ */
+  .right-sidebar {
+    width: 3.5in;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    background: #0a0a0a;
+  }
+
+  .right-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3in 0.2in;
+    gap: 0.22in;
+  }
+
+  .right-bar {
+    width: 0.3in;
+    height: 100%;
+    background: #c3080f;
+    flex-shrink: 0;
+  }
+
+  .footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-label {
+    font-size: 0.16in;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+  }
+
+  .footer-value {
+    font-size: 0.2in;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+  }
+
+  .footer-value.accent { color: #c3080f; }
+
+  .qr-item canvas { display: block; }
+  .qr-item .footer-label { text-align: center; margin-top: 10px; }
+
+  .right-headline {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 900;
+    font-size: 0.56in;
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .right-headline .accent { color: #c3080f; }
+
+  .right-divider {
+    width: 60%;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- ═══════════════ LEFT SIDEBAR ═══════════════ -->
+  <div class="left-sidebar">
+    <div class="left-bar"></div>
+    <div class="left-content">
+      <div class="left-top">
+        <div class="sidebar-title">
+          Ladder<br>of <span class="nasa-accent">Life</span><br>Detection
+        </div>
+        <div class="sidebar-sub">
+          Neveu et al. (2018)
+        </div>
+        <img class="nasa-logo" src="../assets/nasa-logo.png" alt="NASA">
+      </div>
+
+      <div class="life-indicator">
+        <div class="arrow-up" style="color:#FC3D21;">&#9650;</div>
+        <div class="arrow-up" style="color:#FC3D21;">&#9650;</div>
+        <div class="label-life" style="color:#FC3D21;">LIFE</div>
+        <div class="divider-dot"></div>
+        <div class="label-susp">SUSPICIOUS</div>
+        <div class="label-susp">BIOMATERIALS</div>
+        <div class="arrow-down">&#9660;</div>
+        <div class="arrow-down">&#9660;</div>
+      </div>
+
+      <div class="nasa-qr-section">
+        <div class="nasa-qr-label">Learn More</div>
+        <canvas id="qr_nasa"></canvas>
+        <div class="nasa-qr-url">astrobiology.nasa.gov/<br>research/life-detection/<br>ladder/</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ TABLE AREA ═══════════════ -->
+  <div class="table-area">
+    <table>
+      <colgroup>
+        <col class="col-rung">
+        <col class="col-feature">
+        <col class="col-measurement">
+        <col class="col-target">
+        <col class="col-likelihood">
+        <col class="col-quant">
+        <col class="col-contam">
+        <col class="col-repeat">
+        <col class="col-detect">
+        <col class="col-survive">
+        <col class="col-reliable">
+        <col class="col-compat">
+        <col class="col-lastresort">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Rung</th>
+          <th>Feature</th>
+          <th>Measurement</th>
+          <th>Target</th>
+          <th>Likelihood</th>
+          <th class="instrumental" colspan="3">Instrumental Criteria</th>
+          <th class="contextual" colspan="5">Contextual Criteria</th>
+        </tr>
+        <tr class="sub-header">
+          <th>
+            Roughly, subjectively ordered by (top to bottom): 1.&nbsp;decreasing strength of evidence for life 2.&nbsp;increasing ease of measurement
+          </th>
+          <th>
+            Listed in no specific order within a given rung
+          </th>
+          <th colspan="2"></th>
+          <th>
+            &hellip;that the feature would be a biosignature, given the criteria to the right
+          </th>
+          <th>
+            <span class="sub-title">Quantifiable</span>
+            Detectability
+          </th>
+          <th>
+            <span class="sub-title">Contamination-free</span>
+            Likelihood of false positive
+          </th>
+          <th>
+            <span class="sub-title">Repeatable</span>
+          </th>
+          <th>
+            <span class="sub-title">Detectable</span>
+            Detectability
+          </th>
+          <th>
+            <span class="sub-title">Survivable</span>
+            Likelihood of false negative
+          </th>
+          <th>
+            <span class="sub-title">Reliable</span>
+            Ambiguity of feature
+          </th>
+          <th>
+            <span class="sub-title">Compatible</span>
+            Specificity to Earth life
+          </th>
+          <th>
+            <span class="sub-title">Last-resort</span>
+            Ambiguity of interpretation
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ══════ RUNG: Darwinian Evolution ══════ -->
+        <tr>
+          <td class="rung-name">Darwinian Evolution</td>
+          <td class="feature">Changes in inheritable traits in response to selective pressures</td>
+          <td class="measurement">Not practical under mission constraints</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-no">No</td>
+          <td class="dash">&mdash;</td>
+          <td class="dash">&mdash;</td>
+          <td class="repeatable-merged" rowspan="15">
+            Number of replicates depends on:<br><br>
+            Characteristics of the instrument.<br><br>
+            Heterogeneity of the sample.<br><br>
+            Likelihood of systematic errors.<br><br>
+            Required values of the relevant statistical parameters.<br><br>
+            Value and cost of information.
+          </td>
+          <td class="dash">&mdash;</td>
+          <td class="criteria">N/A (extant)</td>
+          <td class="dash">&mdash;</td>
+          <td class="dash">&mdash;</td>
+          <td class="dash">&mdash;</td>
+        </tr>
+
+        <!-- ══════ RUNG: Growth and Reproduction ══════ -->
+        <tr>
+          <td class="rung-name">Growth and Reproduction</td>
+          <td class="feature">Concurrent life stages or identifiable reproductive form, motility</td>
+          <td class="measurement">Cell(like?) structures in multiple stages</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-low">Low</td>
+          <td class="criteria">Hard</td>
+          <td class="criteria">Low</td>
+          <td class="criteria-long">Med (don't identify stages, timing off, sample size low)</td>
+          <td class="criteria">High?</td>
+          <td class="criteria-long">Ambiguous. What is a cell? What morphological differences exist?</td>
+          <td class="criteria">Earth</td>
+          <td class="criteria">Med/High</td>
+        </tr>
+
+        <!-- ══════ RUNG: Metabolism (row 1 of 3) ══════ -->
+        <tr>
+          <td class="rung-name" rowspan="3">Metabolism</td>
+          <td class="feature">Major element or isotope fractionations indicative of metabolism</td>
+          <td class="measurement">Deviation from abiotic fractionation controlled by thermodynamic equilibrium and/or kinetics</td>
+          <td class="target">Remote sensing<br>In situ<br>Sample return</td>
+          <td class="likelihood lh-lowmed">Low/Med</td>
+          <td class="criteria">Easy</td>
+          <td class="criteria">High</td>
+          <td class="criteria">Medium</td>
+          <td class="criteria">High</td>
+          <td class="criteria-long">Hinges on understanding or context</td>
+          <td class="criteria">Earth?</td>
+          <td class="criteria">Low</td>
+        </tr>
+
+        <!-- ══════ Metabolism (row 2) ══════ -->
+        <tr>
+          <td class="feature">Response to substrate addition</td>
+          <td class="measurement">Waste output (compound, heat)</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-lowmed">Low/Med</td>
+          <td class="criteria">Easy</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">High</td>
+          <td class="criteria">N/A (extant)</td>
+          <td class="criteria-long">Hinges on understanding context</td>
+          <td class="criteria">Earth?</td>
+          <td class="criteria">Medium</td>
+        </tr>
+
+        <!-- ══════ Metabolism (row 3) ══════ -->
+        <tr>
+          <td class="feature">Co-located reductant and oxidant</td>
+          <td class="measurement">Deviation from abiotic distribution controlled by thermodynamic equilibrium and/or kinetics</td>
+          <td class="target">Remote sensing<br>In situ<br>Sample return</td>
+          <td class="likelihood lh-medhigh">Med/High</td>
+          <td class="criteria-long">Med (linked to specificity of instrument)</td>
+          <td class="criteria">Low/Med</td>
+          <td class="criteria">Med/High</td>
+          <td class="criteria">High</td>
+          <td class="criteria-long">Mixed reactions, large inventory of chemistries</td>
+          <td class="criteria">Generic</td>
+          <td class="criteria">Low/Med</td>
+        </tr>
+
+        <!-- ══════ RUNG: Molecules & Structures (row 1 of 4) ══════ -->
+        <tr>
+          <td class="rung-name" rowspan="4">Molecules &amp; Structures Conferring Function</td>
+          <td class="feature">Polymers that support information storage and transfer for terran life (DNA, RNA)</td>
+          <td class="measurement">Abundance</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-low">Low</td>
+          <td class="criteria-long">Hard (instrument specificity must be high); RNA hard to measure on Earth</td>
+          <td class="criteria-long">DNA: high; RNA: low (reactive)</td>
+          <td class="criteria-long">Low (technology limited, only terran); RNA highly reactive</td>
+          <td class="criteria-long">Low (hydrolysis in water)</td>
+          <td class="criteria">Reliable</td>
+          <td class="criteria">Earth</td>
+          <td class="criteria">Negligible</td>
+        </tr>
+
+        <!-- ══════ Molecules & Structures (row 2) ══════ -->
+        <tr>
+          <td class="feature" rowspan="2">Structural preferences in organic molecules (non-random and enhancing function)</td>
+          <td class="measurement">Polymer with repeating charge</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-lowmed">Low/Med</td>
+          <td class="criteria-long">Need a lot of material and overprinting must be discernable</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">Med/High</td>
+          <td class="criteria-long">Low (hydrolysis in water, diagenesis)</td>
+          <td class="criteria-long">How much preference needed to detect?</td>
+          <td class="criteria">Generic</td>
+          <td class="criteria">Low</td>
+        </tr>
+
+        <!-- ══════ Molecules & Structures (row 3) ══════ -->
+        <tr>
+          <td class="measurement">Enantiomeric excess &gt;20% in multiple amino acid types</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-high">High</td>
+          <td class="criteria-long">How much excess necessary?</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">Medium</td>
+          <td class="criteria-long">Mixed sample both processes present</td>
+          <td class="criteria">Generic</td>
+          <td class="criteria">Low</td>
+        </tr>
+
+        <!-- ══════ Molecules & Structures (row 4) ══════ -->
+        <tr>
+          <td class="feature">Pigments as evidence of non-random chemistries (e.g. specific pathways)</td>
+          <td class="measurement">Spectral feature and/or color, otherwise see "structural preferences"</td>
+          <td class="target">Remote sensing<br>In situ<br>Sample return</td>
+          <td class="likelihood lh-lowmed">Low/Med</td>
+          <td class="criteria">Easy (fluorescence)</td>
+          <td class="criteria">Low</td>
+          <td class="criteria-long">Low (Limitation of what we are looking for)</td>
+          <td class="criteria-long">Low (diagenesis)</td>
+          <td class="criteria-long">How to define pigment as we don't know it?</td>
+          <td class="criteria-long">Earth (can one abstract?)</td>
+          <td class="criteria">Very low</td>
+        </tr>
+
+        <!-- ══════ RUNG: Potential biomolecule components (row 1 of 3) ══════ -->
+        <tr>
+          <td class="rung-name" rowspan="3">Potential Biomolecule Components</td>
+          <td class="feature">Organics not found abiotically (e.g. hopanes, ATP, histidine)</td>
+          <td class="measurement">Presence</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-med">Medium</td>
+          <td class="criteria">Easy if enough material</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">High</td>
+          <td class="criteria">High</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">Earth?</td>
+          <td class="criteria">High</td>
+        </tr>
+
+        <!-- ══════ Potential biomolecule (row 2) ══════ -->
+        <tr>
+          <td class="feature">Complex organics (e.g. nucleic acid oligomers, peptides, PAH)</td>
+          <td class="measurement">Presence</td>
+          <td class="target">Remote sensing (PAH)<br>In situ<br>Sample return</td>
+          <td class="likelihood lh-high">High</td>
+          <td class="criteria">Easy if enough material</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">High</td>
+          <td class="criteria">Medium</td>
+          <td class="criteria-long">Abiotic production known</td>
+          <td class="criteria">Generic</td>
+          <td class="criteria">Med/High</td>
+        </tr>
+
+        <!-- ══════ Potential biomolecule (row 3) ══════ -->
+        <tr>
+          <td class="feature">Monomeric units of biopolymers (nucleobases, amino acids, lipids for compartmentalization)</td>
+          <td class="measurement">Presence</td>
+          <td class="target">Remote sensing<br>In situ<br>Sample return</td>
+          <td class="likelihood lh-medhigh">Med/High</td>
+          <td class="criteria-long">Limit of detection, need a lot of material</td>
+          <td class="criteria">High</td>
+          <td class="criteria">High</td>
+          <td class="criteria-long">Med (diagenesis)</td>
+          <td class="criteria-long">Abiotic pathways known</td>
+          <td class="criteria">Generic</td>
+          <td class="criteria">Medium</td>
+        </tr>
+
+        <!-- ══════ RUNG: Potential metabolic byproducts (row 1 of 2) ══════ -->
+        <tr>
+          <td class="rung-name" rowspan="2">Potential Metabolic Byproducts</td>
+          <td class="feature">Distribution of metals e.g. V in oil of Fe, Ni, Mo/W, Co, S, Se, P</td>
+          <td class="measurement">Presence</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-med">Medium</td>
+          <td class="criteria-long">Easy except background issue</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">High</td>
+          <td class="criteria">High</td>
+          <td class="criteria-long">Background known</td>
+          <td class="criteria">Generic</td>
+          <td class="criteria">Medium</td>
+        </tr>
+
+        <!-- ══════ Potential metabolic byproducts (row 2) ══════ -->
+        <tr>
+          <td class="feature">Patterns of complexity (organics)</td>
+          <td class="measurement">Deviation from equilibrium (P(Poisson distribution of pathway complexity) &lt;0.01?) or abiotic kinetic distribution</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-high">High</td>
+          <td class="criteria-long">Background issue, material limited</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">High</td>
+          <td class="criteria">Medium?</td>
+          <td class="criteria-long">Limited documentation of abiotic vs. biotic differences</td>
+          <td class="criteria">Generic</td>
+          <td class="criteria">Medium</td>
+        </tr>
+
+        <!-- ══════ RUNG: Biofabrics ══════ -->
+        <tr>
+          <td class="rung-name">Biofabrics</td>
+          <td class="feature">Textures</td>
+          <td class="measurement">Biologically mediated morphologies, preferably with co-located composition</td>
+          <td class="target">In situ<br>Sample return</td>
+          <td class="likelihood lh-med">Medium</td>
+          <td class="criteria">Medium</td>
+          <td class="criteria">Low</td>
+          <td class="criteria">Medium</td>
+          <td class="criteria">High?</td>
+          <td class="criteria-long">Highly ambiguous</td>
+          <td class="criteria">Earth</td>
+          <td class="criteria">High</td>
+        </tr>
+
+        <!-- ══════ RUNG: Habitability ══════ -->
+        <tr class="habitability-row">
+          <td class="rung-name">Habitability</td>
+          <td colspan="12" style="text-align: left; padding: 16px 20px;">
+            Liquid water, building blocks, energy source, gradients. Redox, temperature, pH, energy, disequilibria.
+          </td>
+        </tr>
+
+        <!-- ══════ NOTES ROW ══════ -->
+        <tr class="notes-row">
+          <td colspan="13">
+            Rows indicate features of life; columns indicate criteria of Table 1. Features highlighted in green indicate evidence for extant life. Edits to the Ladder are encouraged; see Neveu et al. (2018), doi: 10.1089/ast.2017.1773.
+            &nbsp;&bull;&nbsp;
+            <strong>Likelihood</strong> &mdash; A summary of the factors to the right including specificity, ambiguity, false positive, false negative and detectability.
+            &nbsp;&bull;&nbsp;
+            <strong>False Positive</strong> &mdash; A positive determination based on detection due to contamination or a positive detection caused by an unintended interference with the method of detection.
+            &nbsp;&bull;&nbsp;
+            <strong>False Negative</strong> &mdash; Lack of detection when the factor is actually present either in the sample or the system at large. For example, low signal to background or signal below the limit of detection.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══════════════ RIGHT SIDEBAR ═══════════════ -->
+  <div class="right-sidebar">
+    <div class="right-content">
+      <img class="club-logo" src="../assets/sc-robotics-logo-light-text.png" alt="SC Robotics">
+      <img class="urc-logo" src="../assets/urc-logo-dark.png" alt="University Rover Challenge" style="margin-bottom:0.4in;">
+
+      <div class="right-headline">
+        Prove<br><span class="accent">Life Exists.</span>
+      </div>
+
+      <div class="right-divider"></div>
+
+      <div class="footer-item qr-item">
+        <canvas id="qr_site"></canvas>
+        <div class="footer-label" style="font-size:0.11in; letter-spacing:1px;">saddlebackcollegerobotics.com</div>
+      </div>
+
+      <div class="right-divider"></div>
+
+      <div class="footer-item">
+        <div class="footer-label">Discord</div>
+        <div class="footer-value accent">discord.gg/USzmfYwAUa</div>
+      </div>
+
+      <div class="footer-item">
+        <div class="footer-label">Open to</div>
+        <div class="footer-value">All Saddleback<br>&amp; IVC Students</div>
+      </div>
+
+      <div class="right-divider"></div>
+
+      <div class="footer-item">
+        <div class="footer-label">Est. 2018</div>
+      </div>
+    </div>
+    <div class="right-bar"></div>
+  </div>
+
+</div>
+
+<script>
+  // Site QR code (right sidebar)
+  (function() {
+    var qr = qrcode(0, 'M');
+    qr.addData('https://saddlebackcollegerobotics.com');
+    qr.make();
+    var canvas = document.getElementById('qr_site');
+    var size = 160;
+    canvas.width = size;
+    canvas.height = size;
+    var ctx = canvas.getContext('2d');
+    var modules = qr.getModuleCount();
+    var cell = size / modules;
+    ctx.fillStyle = '#0a0a0a';
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = '#ffffff';
+    for (var r = 0; r < modules; r++) {
+      for (var c = 0; c < modules; c++) {
+        if (qr.isDark(r, c)) {
+          ctx.fillRect(Math.floor(c * cell), Math.floor(r * cell), Math.ceil(cell), Math.ceil(cell));
+        }
+      }
+    }
+  })();
+
+  // NASA QR code (left sidebar)
+  (function() {
+    var qr = qrcode(0, 'M');
+    qr.addData('https://astrobiology.nasa.gov/research/life-detection/ladder/');
+    qr.make();
+    var canvas = document.getElementById('qr_nasa');
+    var size = 120;
+    canvas.width = size;
+    canvas.height = size;
+    var ctx = canvas.getContext('2d');
+    var modules = qr.getModuleCount();
+    var cell = size / modules;
+    ctx.fillStyle = '#0a0a0a';
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = '#ffffff';
+    for (var r = 0; r < modules; r++) {
+      for (var c = 0; c < modules; c++) {
+        if (qr.isDark(r, c)) {
+          ctx.fillRect(Math.floor(c * cell), Math.floor(r * cell), Math.ceil(cell), Math.ceil(cell));
+        }
+      }
+    }
+  })();
+</script>
+</body>
+</html>

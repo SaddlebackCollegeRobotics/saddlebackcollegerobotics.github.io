@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SC Robotics — Reach Further</title>
+<title>SC Robotics — Dig Deeper (Dark)</title>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@600;700;800;900&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @page { size: 8.5in 11in; margin: 0; }
+  @page { size: 16in 20in; margin: 0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
-    width: 8.5in;
-    height: 11in;
-    background: #ffffff;
-    color: #0a0a0a;
+    width: 16in;
+    height: 20in;
+    background: #0a0a0a;
+    color: #ffffff;
     font-family: 'Roboto Mono', monospace;
     overflow: hidden;
     -webkit-print-color-adjust: exact;
@@ -31,9 +31,11 @@
 
   .top-bar {
     width: 100%;
-    height: 10px;
+    height: 19px;
     background: #c3080f;
     flex-shrink: 0;
+    position: relative;
+    z-index: 10;
   }
 
   /* Header */
@@ -41,27 +43,28 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 22px 56px;
+    padding: 41px 105px;
     flex-shrink: 0;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 10;
   }
 
   .club-logo {
-    height: 44px;
+    height: 83px;
     width: auto;
     object-fit: contain;
     flex-shrink: 0;
   }
 
   .club-sub {
-    font-size: 10px;
-    letter-spacing: 3px;
+    font-size: 19px;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.3);
+    color: rgba(255,255,255,0.55);
     text-align: right;
   }
 
-  /* SVG zone — huge, full width */
+  /* SVG zone */
   .svg-zone {
     flex: 1;
     position: relative;
@@ -69,78 +72,87 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Subtle grid */
-    background-image:
-      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
   }
 
-  .svg-zone svg {
-    width: 145%;
-    height: 145%;
-    flex-shrink: 0;
+  .svg-zone img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1) brightness(0.9);
+  }
+
+  /* Drawing ref label */
+  .drawing-ref {
+    position: absolute;
+    bottom: 26px;
+    right: 53px;
+    text-align: right;
+    font-size: 17px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    line-height: 1.7;
   }
 
   /* Bottom band */
   .bottom-band {
     flex-shrink: 0;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    padding: 0 56px;
+    position: relative;
+    z-index: 10;
+    padding: 0 105px;
   }
 
   .headline {
     font-family: 'Lexend Deca', sans-serif;
     font-weight: 900;
-    font-size: 96px;
+    font-size: 180px;
     line-height: 0.88;
     text-transform: uppercase;
-    letter-spacing: -3px;
-    padding-top: 16px;
+    letter-spacing: -6px;
   }
 
-  .headline .word-further {
+  .headline .word-deeper {
     color: #c3080f;
   }
 
   .divider {
     width: 100%;
-    height: 1px;
-    background: rgba(0,0,0,0.1);
-    margin: 16px 0 14px;
+    height: 2px;
+    background: rgba(255,255,255,0.15);
+    margin: 38px 0 30px;
   }
 
   .footer-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 20px;
+    padding-bottom: 41px;
   }
 
   .footer-item {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 6px;
   }
 
   .footer-label {
-    font-size: 8px;
+    font-size: 15px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: rgba(0,0,0,0.3);
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.5);
   }
 
   .footer-value {
-    font-size: 12px;
+    font-size: 23px;
     font-weight: 600;
-    color: rgba(0,0,0,0.65);
+    color: rgba(255,255,255,0.85);
   }
 
   .footer-value.accent { color: #c3080f; }
 
   .bottom-bar {
     width: 100%;
-    height: 10px;
+    height: 19px;
     background: #c3080f;
     flex-shrink: 0;
   }
@@ -152,28 +164,34 @@
   <div class="top-bar"></div>
 
   <div class="header">
-    <img class="club-logo" src="../assets/sc-robotics-logo-dark-text.png" alt="SC Robotics">
+    <img class="club-logo" src="../../assets/sc-robotics-logo-light-text.png" alt="SC Robotics">
     <div class="club-sub">Est. 2018</div>
   </div>
 
-  <div class="svg-zone" id="svg-zone"></div>
+  <div class="svg-zone">
+    <img src="../26-SCI-COL-A001-Science Collection System.svg" alt="Science Collection System">
+    <div class="drawing-ref">
+      26-SCI-COL-A001<br>
+      Science Collection System
+    </div>
+  </div>
 
   <div class="bottom-band">
     <div class="headline">
-      Reach<br><span class="word-further">Further.</span>
+      Dig<br><span class="word-deeper">Deeper.</span>
     </div>
     <div class="divider"></div>
     <div class="footer-row">
       <div class="footer-item">
-        <img src="../assets/urc-logo.png" alt="University Rover Challenge" style="height:30px; width:auto; opacity:0.7;">
+        <img src="../../assets/urc-logo-dark.png" alt="University Rover Challenge" style="height:56px; width:auto;">
       </div>
       <div class="footer-item">
         <div class="footer-label">Open to</div>
         <div class="footer-value">All Saddleback &amp; IVC Students</div>
       </div>
-      <div class="footer-item" style="display:flex; flex-direction:row; align-items:center; gap:12px;">
+      <div class="footer-item" style="display:flex; flex-direction:row; align-items:center; gap:23px;">
         <div class="footer-label">saddlebackcollegerobotics.com</div>
-        <canvas id="qr_site_poster_arm"></canvas>
+        <canvas id="qr_site_poster_science"></canvas>
       </div>
     </div>
   </div>
@@ -182,35 +200,21 @@
 </div>
 
 <script>
-  // Inline the SVG so we can adjust its viewBox to correct the off-center arm
-  fetch('./NewArm.svg')
-    .then(r => r.text())
-    .then(text => {
-      document.getElementById('svg-zone').innerHTML = text;
-      const svg = document.querySelector('#svg-zone svg');
-      // Original viewBox is "0 0 792 612". Shift window right by 80px
-      // so the arm content appears shifted left.
-      svg.setAttribute('viewBox', '120 5 726 550');
-    })
-    .catch(function() { console.error('Failed to load NewArm.svg'); });
-</script>
-
-<script>
   (function() {
     var qr = qrcode(0, 'M');
     qr.addData('https://saddlebackcollegerobotics.com');
     qr.make();
-    var canvas = document.getElementById('qr_site_poster_arm');
-    var size = 72;
+    var canvas = document.getElementById('qr_site_poster_science');
+    var size = 135;
     canvas.width = size;
     canvas.height = size;
     var ctx = canvas.getContext('2d');
     var modules = qr.getModuleCount();
     var cell = size / modules;
     var cellSize = Math.ceil(cell);
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, size, size);
     ctx.fillStyle = '#0a0a0a';
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = '#ffffff';
     for (var r = 0; r < modules; r++) {
       for (var c = 0; c < modules; c++) {
         if (qr.isDark(r, c)) {

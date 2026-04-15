@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SC Robotics — Reach Further</title>
+<title>SC Robotics — Driven to Explore</title>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@600;700;800;900&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -61,7 +61,7 @@
     text-align: right;
   }
 
-  /* SVG zone — huge, full width */
+  /* SVG fills most of the poster */
   .svg-zone {
     flex: 1;
     position: relative;
@@ -69,20 +69,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Subtle grid */
     background-image:
       linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
-  .svg-zone svg {
-    width: 145%;
-    height: 145%;
-    flex-shrink: 0;
+  .svg-zone img {
+    width: 115%;
+    height: 115%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
   }
 
-  /* Bottom band */
+  .drawing-ref {
+    position: absolute;
+    bottom: 14px;
+    right: 28px;
+    text-align: right;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.18);
+    line-height: 1.7;
+  }
+
+  /* Bottom text band */
   .bottom-band {
     flex-shrink: 0;
     border-top: 1px solid rgba(0,0,0,0.1);
@@ -99,7 +112,7 @@
     padding-top: 16px;
   }
 
-  .headline .word-further {
+  .headline .word-explore {
     color: #c3080f;
   }
 
@@ -156,11 +169,17 @@
     <div class="club-sub">Est. 2018</div>
   </div>
 
-  <div class="svg-zone" id="svg-zone"></div>
+  <div class="svg-zone">
+    <img src="./wheel.svg" alt="Rover Wheel">
+    <div class="drawing-ref">
+      26_SCR_WHEEL<br>
+      Drive Wheel Assembly
+    </div>
+  </div>
 
   <div class="bottom-band">
     <div class="headline">
-      Reach<br><span class="word-further">Further.</span>
+      Driven to<br><span class="word-explore">Explore.</span>
     </div>
     <div class="divider"></div>
     <div class="footer-row">
@@ -173,7 +192,7 @@
       </div>
       <div class="footer-item" style="display:flex; flex-direction:row; align-items:center; gap:12px;">
         <div class="footer-label">saddlebackcollegerobotics.com</div>
-        <canvas id="qr_site_poster_arm"></canvas>
+        <canvas id="qr_site_poster_wheel_light"></canvas>
       </div>
     </div>
   </div>
@@ -182,25 +201,11 @@
 </div>
 
 <script>
-  // Inline the SVG so we can adjust its viewBox to correct the off-center arm
-  fetch('./NewArm.svg')
-    .then(r => r.text())
-    .then(text => {
-      document.getElementById('svg-zone').innerHTML = text;
-      const svg = document.querySelector('#svg-zone svg');
-      // Original viewBox is "0 0 792 612". Shift window right by 80px
-      // so the arm content appears shifted left.
-      svg.setAttribute('viewBox', '120 5 726 550');
-    })
-    .catch(function() { console.error('Failed to load NewArm.svg'); });
-</script>
-
-<script>
   (function() {
     var qr = qrcode(0, 'M');
     qr.addData('https://saddlebackcollegerobotics.com');
     qr.make();
-    var canvas = document.getElementById('qr_site_poster_arm');
+    var canvas = document.getElementById('qr_site_poster_wheel_light');
     var size = 72;
     canvas.width = size;
     canvas.height = size;

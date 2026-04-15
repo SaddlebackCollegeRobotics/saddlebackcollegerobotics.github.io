@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SC Robotics — Reach Further</title>
+<title>SC Robotics — Built to Grip</title>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@600;700;800;900&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -36,7 +36,6 @@
     flex-shrink: 0;
   }
 
-  /* Header */
   .header {
     display: flex;
     align-items: center;
@@ -61,7 +60,6 @@
     text-align: right;
   }
 
-  /* SVG zone — huge, full width */
   .svg-zone {
     flex: 1;
     position: relative;
@@ -69,7 +67,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Subtle grid */
     background-image:
       linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
@@ -82,7 +79,6 @@
     flex-shrink: 0;
   }
 
-  /* Bottom band */
   .bottom-band {
     flex-shrink: 0;
     border-top: 1px solid rgba(0,0,0,0.1);
@@ -99,7 +95,7 @@
     padding-top: 16px;
   }
 
-  .headline .word-further {
+  .headline .word-accent {
     color: #c3080f;
   }
 
@@ -144,7 +140,6 @@
     background: #c3080f;
     flex-shrink: 0;
   }
-
 </style>
 </head>
 <body>
@@ -160,7 +155,7 @@
 
   <div class="bottom-band">
     <div class="headline">
-      Reach<br><span class="word-further">Further.</span>
+      <span class="word-accent">Grippyy!</span>
     </div>
     <div class="divider"></div>
     <div class="footer-row">
@@ -168,12 +163,12 @@
         <img src="../assets/urc-logo.png" alt="University Rover Challenge" style="height:30px; width:auto; opacity:0.7;">
       </div>
       <div class="footer-item">
-        <div class="footer-label">Open to</div>
-        <div class="footer-value">All Saddleback &amp; IVC Students</div>
+        <div class="footer-label">Part</div>
+        <div class="footer-value">26-ARM-END_EFFECTOR</div>
       </div>
       <div class="footer-item" style="display:flex; flex-direction:row; align-items:center; gap:12px;">
         <div class="footer-label">saddlebackcollegerobotics.com</div>
-        <canvas id="qr_site_poster_arm"></canvas>
+        <canvas id="qr_site_poster_ee"></canvas>
       </div>
     </div>
   </div>
@@ -182,17 +177,14 @@
 </div>
 
 <script>
-  // Inline the SVG so we can adjust its viewBox to correct the off-center arm
-  fetch('./NewArm.svg')
+  fetch('./EE.svg')
     .then(r => r.text())
     .then(text => {
       document.getElementById('svg-zone').innerHTML = text;
       const svg = document.querySelector('#svg-zone svg');
-      // Original viewBox is "0 0 792 612". Shift window right by 80px
-      // so the arm content appears shifted left.
-      svg.setAttribute('viewBox', '120 5 726 550');
+      svg.setAttribute('viewBox', '0 0 851.672 691.488');
     })
-    .catch(function() { console.error('Failed to load NewArm.svg'); });
+    .catch(function() { console.error('Failed to load EE.svg'); });
 </script>
 
 <script>
@@ -200,7 +192,7 @@
     var qr = qrcode(0, 'M');
     qr.addData('https://saddlebackcollegerobotics.com');
     qr.make();
-    var canvas = document.getElementById('qr_site_poster_arm');
+    var canvas = document.getElementById('qr_site_poster_ee');
     var size = 72;
     canvas.width = size;
     canvas.height = size;
