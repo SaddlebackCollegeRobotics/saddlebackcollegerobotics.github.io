@@ -881,7 +881,8 @@ h1, h2, h3 {
     display: block;
 }
 
-/* Hide the floating QR on the apply slide — already two big QRs there */
+/* Hide the floating QR on the hero (slide 1) and the apply slide (slide 9) */
+body[data-slide="0"] .floating-qr,
 body[data-slide="8"] .floating-qr { display: none; }
 
 .nav-dots {
@@ -1217,6 +1218,7 @@ body[data-slide="8"] .floating-qr { display: none; }
     const dots = document.querySelectorAll('.nav-dot');
     let currentSlide = 0;
     const totalSlides = slides.length;
+    document.body.dataset.slide = '0';
 
     // Reveal animations via IntersectionObserver
     const revealObserver = new IntersectionObserver((entries) => {
