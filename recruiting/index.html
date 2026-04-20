@@ -881,6 +881,9 @@ h1, h2, h3 {
     display: block;
 }
 
+/* Hide the floating QR on the apply slide — already two big QRs there */
+body[data-slide="8"] .floating-qr { display: none; }
+
 .nav-dots {
     position: fixed;
     right: clamp(1rem, 2vw, 2rem);
@@ -1240,6 +1243,7 @@ h1, h2, h3 {
 
     function setActive(idx) {
         currentSlide = idx;
+        document.body.dataset.slide = idx;
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === idx);
         });
