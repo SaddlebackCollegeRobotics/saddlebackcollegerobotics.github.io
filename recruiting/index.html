@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SC Robotics — Classroom Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@600;700;800;900&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ===========================================
+   BRAND — SC ROBOTICS
+   red #c3080f · dark #1a1a1a/#1f1f1f · white
+   Lexend Deca (display) + Roboto Mono (body)
+   =========================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; overflow-x: hidden; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+body {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    background: var(--ink);
+    color: var(--bone);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+}
+
+:root {
+    /* Brand palette (direct from saddlebackcollegerobotics.com) */
+    --red:      #c3080f;
+    --red-2:    #a70a0f;
+    --ink:      #1a1a1a;   /* paletteColor7 */
+    --ink-2:    #1f1f1f;   /* paletteColor8 */
+    --ink-3:    #292929;   /* paletteColor6 */
+    --bone:     #ffffff;
+    --bone-2:   #dfdad1;   /* warm divider */
+    --muted:    #a5a5a5;
+    --discord:  #5865F2;
+    --line:     rgba(255,255,255,0.1);
+
+    /* Type scale */
+    --title-size: clamp(2rem, 7.5vw, 6.5rem);
+    --h1-size:    clamp(1.75rem, 5.5vw, 4.5rem);
+    --h2-size:    clamp(1.25rem, 3.2vw, 2.4rem);
+    --h3-size:    clamp(1rem, 2.2vw, 1.5rem);
+    --body-size:  clamp(0.85rem, 1.35vw, 1.1rem);
+    --small-size: clamp(0.7rem, 1vw, 0.875rem);
+    --mono-size:  clamp(0.75rem, 1.1vw, 1rem);
+
+    --slide-padding: clamp(1.25rem, 4.5vw, 5rem);
+    --content-gap:   clamp(0.75rem, 2vw, 2rem);
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: var(--slide-padding);
+    background: var(--ink);
+}
+
+.slide::before {
+    display: none;
+}
+
+.slide > * { position: relative; z-index: 1; }
+
+/* Slide chrome */
+.slide-index {
+    position: absolute;
+    top: calc(var(--slide-padding) * 0.6);
+    right: calc(var(--slide-padding) * 0.6);
+    font-family: 'Roboto Mono', monospace;
+    font-size: var(--small-size);
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+.slide-tag { display: none; }
+
+h1, h2, h3 {
+    font-family: 'Lexend Deca', 'Roboto Mono', sans-serif;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    font-weight: 800;
+}
+
+/* Shared — hero photo background for select slides */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Title slide — zoom in, pan toward the rover */
+.s-title .hero-bg img {
+    object-position: 25% 70%;
+    transform: scale(1.44);
+    transform-origin: 25% 70%;
+}
+
+.hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+}
+
+.slide.has-hero::before {
+    /* kill the red radial glow on photo slides */
+    display: none;
+}
+
+
+/* =========================================
+   S1 — TITLE (split: text left, rover right)
+   ========================================= */
+.s-title {
+    justify-content: center;
+    align-items: stretch;
+    padding: 0;
+}
+
+.hero-split {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    padding: var(--slide-padding);
+    padding-bottom: clamp(3rem, 8vh, 5rem);
+    min-height: 0;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(1rem, 2.5vh, 1.75rem);
+    min-width: 0;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    max-height: 75vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 30% 70%;
+    display: block;
+}
+
+.glass-hero {
+    position: relative;
+    padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 3.5vw, 3rem);
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+}
+
+.s-title .logo {
+    width: clamp(140px, 18vw, 280px);
+    height: auto;
+    display: block;
+}
+
+.s-title .eyebrow {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--red);
+    font-size: var(--small-size);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
+    font-weight: 600;
+}
+
+.s-title h1 {
+    font-size: clamp(1.75rem, 6vw, 5rem);
+    color: var(--bone);
+    max-width: 16ch;
+}
+
+.s-title h1 .red { color: var(--red); }
+
+.s-title .sub {
+    font-size: var(--h3-size);
+    color: var(--bone);
+    font-weight: 400;
+    max-width: 50ch;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.s-title .meta {
+    position: absolute;
+    bottom: var(--slide-padding);
+    left: var(--slide-padding);
+    right: var(--slide-padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: var(--small-size);
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    font-weight: 500;
+}
+
+/* =========================================
+   S2 — HOOK / CREDIBILITY
+   ========================================= */
+.s-hook { justify-content: center; gap: clamp(1rem, 3vh, 2rem); }
+
+.s-hook h2 {
+    font-size: var(--h2-size);
+    color: var(--bone);
+    max-width: 30ch;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.s-hook h2 .red { color: var(--red); }
+
+.stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: clamp(1rem, 3vw, 3rem);
+    max-width: 1400px;
+}
+
+.stat {
+    border-top: 3px solid var(--red);
+    padding-top: clamp(0.5rem, 1.5vh, 1rem);
+}
+
+.stat .num {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+    color: var(--bone);
+    line-height: 0.9;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.stat .num .accent { color: var(--red); }
+
+.stat .label {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--muted);
+    font-size: var(--small-size);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: clamp(0.3rem, 1vh, 0.5rem);
+    max-width: 28ch;
+    font-weight: 500;
+}
+
+.only-banner {
+    margin-top: clamp(1.25rem, 3vh, 2rem);
+    padding-left: clamp(0.75rem, 1.5vw, 1.25rem);
+    border-left: 4px solid var(--red);
+    color: var(--bone);
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: clamp(1.25rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    max-width: 1400px;
+}
+
+.only-banner .underline {
+    color: var(--red);
+    font-style: italic;
+}
+
+/* =========================================
+   S3 — LOOK
+   ========================================= */
+.s-look { justify-content: center; align-items: center; text-align: center; }
+
+.s-look .arrow {
+    font-family: 'Lexend Deca', sans-serif;
+    color: var(--red);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: clamp(1rem, 3vh, 2rem);
+    letter-spacing: 0.3em;
+    font-weight: 900;
+}
+
+.s-look h1 {
+    font-size: var(--title-size);
+    color: var(--bone);
+    max-width: 14ch;
+}
+
+.s-look h1 .red { color: var(--red); }
+
+.s-look .note {
+    margin-top: clamp(1rem, 3vh, 2rem);
+    font-size: var(--h3-size);
+    color: var(--bone);
+    max-width: 52ch;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.55;
+}
+
+/* =========================================
+   S4 — MISSIONS
+   ========================================= */
+.s-missions { justify-content: center; }
+
+.s-missions h2 {
+    font-size: var(--h1-size);
+    color: var(--bone);
+    margin-bottom: clamp(1.5rem, 4vh, 3rem);
+    max-width: 20ch;
+}
+
+.s-missions h2 .red { color: var(--red); }
+
+.missions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+    max-width: 1400px;
+}
+
+.mission {
+    border: 1px solid var(--line);
+    padding: clamp(1rem, 2.5vw, 2rem);
+    background: var(--ink-2);
+}
+
+.mission .num {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--red);
+    font-size: var(--small-size);
+    letter-spacing: 0.18em;
+    margin-bottom: clamp(0.5rem, 1vh, 0.75rem);
+    font-weight: 700;
+}
+
+.mission h3 {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: var(--h3-size);
+    color: var(--bone);
+    margin-bottom: clamp(0.4rem, 1vh, 0.75rem);
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.mission p {
+    font-size: var(--body-size);
+    color: var(--muted);
+    line-height: 1.5;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* =========================================
+   S5 — WHO WE BEAT
+   ========================================= */
+.s-beat { justify-content: center; }
+
+.s-beat .eyebrow {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--red);
+    font-size: var(--small-size);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
+    font-weight: 700;
+}
+
+.s-beat h2 {
+    font-size: var(--h1-size);
+    color: var(--bone);
+    max-width: 20ch;
+    margin-bottom: clamp(1rem, 3vh, 2rem);
+}
+
+.schools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    gap: clamp(0.5rem, 1vw, 1rem);
+    max-width: 1400px;
+}
+
+.school {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    color: var(--bone);
+    padding: clamp(0.5rem, 1vh, 0.9rem) clamp(0.75rem, 1.5vw, 1.25rem);
+    border-left: 3px solid var(--red);
+    background: var(--ink-2);
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.s-beat .kicker {
+    margin-top: clamp(1rem, 3vh, 2rem);
+    font-size: var(--h3-size);
+    color: var(--bone);
+    max-width: 48ch;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.5;
+}
+
+.s-beat .kicker strong { color: var(--red); font-weight: 700; }
+
+/* =========================================
+   S6 — OPEN ROLES
+   ========================================= */
+.s-roles { justify-content: center; }
+
+.s-roles h2 {
+    font-size: var(--h1-size);
+    color: var(--bone);
+    margin-bottom: clamp(1rem, 3vh, 2rem);
+    max-width: 20ch;
+}
+
+.s-roles h2 .red { color: var(--red); }
+
+.roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    max-width: 1400px;
+}
+
+.role {
+    padding: clamp(1rem, 2.2vw, 1.75rem);
+    background: var(--ink-2);
+    border-top: 4px solid var(--red);
+}
+
+.role h3 {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: var(--h2-size);
+    color: var(--bone);
+    margin-bottom: clamp(0.4rem, 1vh, 0.6rem);
+    font-weight: 700;
+    line-height: 1.05;
+}
+
+.role .tools {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--red);
+    font-size: var(--small-size);
+    letter-spacing: 0.08em;
+    margin-bottom: clamp(0.5rem, 1vh, 0.75rem);
+    font-weight: 600;
+}
+
+.role p {
+    font-size: var(--body-size);
+    color: var(--bone);
+    line-height: 1.5;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* =========================================
+   S6 — WE TEACH (split: text left, tool collage right)
+   ========================================= */
+.s-teach { justify-content: center; }
+
+.teach-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.teach-text { min-width: 0; }
+
+.s-teach .callout {
+    font-size: var(--h2-size);
+    color: var(--bone);
+    font-family: 'Lexend Deca', sans-serif;
+    line-height: 1.1;
+    max-width: 26ch;
+    font-weight: 800;
+}
+
+.s-teach .body {
+    margin-top: clamp(1rem, 2.5vh, 1.75rem);
+    font-size: var(--body-size);
+    color: var(--bone);
+    max-width: 54ch;
+    line-height: 1.55;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.s-teach .body strong { color: var(--red); font-weight: 600; }
+
+.teach-collage {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.4rem, 1vw, 0.75rem);
+    min-width: 0;
+}
+
+.tool-tile {
+    aspect-ratio: 1;
+    padding: clamp(0.5rem, 1.2vw, 1rem);
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.25rem, 0.8vh, 0.6rem);
+    min-height: 0;
+}
+
+.tool-tile img {
+    width: auto;
+    max-width: 78%;
+    max-height: 58%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
+}
+
+.tool-tile .tool-name {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: clamp(0.7rem, 1.1vw, 0.95rem);
+    font-weight: 700;
+    color: var(--bone);
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -0.01em;
+}
+
+/* =========================================
+   S8 — WHAT YOU GET
+   ========================================= */
+.s-get { justify-content: center; }
+
+.s-get h2 {
+    font-size: var(--h1-size);
+    color: var(--bone);
+    margin-bottom: clamp(1rem, 3vh, 2rem);
+    max-width: 18ch;
+}
+
+.s-get h2 .red { color: var(--red); }
+
+.perks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(0.5rem, 1.2vw, 1rem) clamp(1rem, 2.5vw, 2.5rem);
+    max-width: 1400px;
+}
+
+.perk {
+    display: flex;
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    align-items: baseline;
+    font-size: var(--h3-size);
+    color: var(--bone);
+    padding: clamp(0.5rem, 1vh, 0.75rem) 0;
+    border-bottom: 1px solid var(--line);
+    line-height: 1.3;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.perk .bullet {
+    font-family: 'Lexend Deca', sans-serif;
+    color: var(--red);
+    font-size: var(--small-size);
+    flex-shrink: 0;
+    width: clamp(2rem, 2.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+/* =========================================
+   S9 — LOGISTICS
+   ========================================= */
+.s-logistics { justify-content: center; }
+
+.s-logistics h2 {
+    font-size: var(--h1-size);
+    color: var(--bone);
+    margin-bottom: clamp(1.5rem, 4vh, 3rem);
+    max-width: 22ch;
+}
+
+.facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    max-width: 1400px;
+}
+
+.fact {
+    border-top: 3px solid var(--red);
+    padding-top: clamp(0.5rem, 1.5vh, 1rem);
+}
+
+.fact .key {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--muted);
+    font-size: var(--small-size);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: clamp(0.4rem, 1vh, 0.75rem);
+    font-weight: 600;
+}
+
+.fact .val {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: var(--h2-size);
+    color: var(--bone);
+    line-height: 1.05;
+    font-weight: 800;
+}
+
+.fact .detail {
+    font-size: var(--body-size);
+    color: var(--bone);
+    margin-top: clamp(0.3rem, 1vh, 0.5rem);
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.5;
+}
+
+/* =========================================
+   S10 — THE ASK (TWO QRs)
+   ========================================= */
+.s-ask {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.s-ask .eyebrow {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--red);
+    font-size: var(--small-size);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: clamp(0.75rem, 2vh, 1.5rem);
+    font-weight: 700;
+}
+
+.s-ask h1 {
+    font-size: var(--h1-size);
+    color: var(--bone);
+    max-width: 16ch;
+    line-height: 1;
+    margin-bottom: clamp(1.25rem, 3.5vh, 2.5rem);
+}
+
+.s-ask h1 .red { color: var(--red); }
+
+.qr-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: clamp(1.5rem, 4vw, 4rem);
+    max-width: 900px;
+    width: 100%;
+    justify-items: center;
+}
+
+.qr-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.5rem, 1.5vh, 1rem);
+}
+
+.qr-card .qr-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: var(--small-size);
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.qr-card .qr-wrap {
+    width: clamp(130px, 20vh, 220px);
+    height: clamp(130px, 20vh, 220px);
+    background: var(--bone);
+    padding: clamp(8px, 1.2vh, 14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--bone);
+}
+
+.qr-card.discord .qr-wrap { border-color: var(--discord); }
+.qr-card.website .qr-wrap { border-color: var(--red); }
+
+.qr-card .qr-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.qr-card .qr-name {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: var(--h3-size);
+    color: var(--bone);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.qr-card .qr-url {
+    font-family: 'Roboto Mono', monospace;
+    font-size: var(--small-size);
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    word-break: break-all;
+}
+
+.qr-card .qr-url.discord-url { color: var(--discord); }
+
+.s-ask .subnote {
+    margin-top: clamp(1rem, 3vh, 2rem);
+    font-size: var(--body-size);
+    color: var(--bone);
+    font-family: 'Roboto Mono', monospace;
+    max-width: 50ch;
+    line-height: 1.5;
+}
+
+.s-ask .subnote strong { color: var(--red); }
+
+/* =========================================
+   NAV
+   ========================================= */
+.nav-dots {
+    position: fixed;
+    right: clamp(1rem, 2vw, 2rem);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.4rem, 1vh, 0.6rem);
+    z-index: 100;
+}
+
+.nav-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.nav-dot.active {
+    background: var(--red);
+}
+
+.nav-dot:hover { background: var(--bone); }
+
+.keyboard-hint {
+    position: fixed;
+    bottom: clamp(0.75rem, 1.5vh, 1.25rem);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Roboto Mono', monospace;
+    font-size: var(--small-size);
+    color: var(--muted);
+    opacity: 0.6;
+    z-index: 100;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+/* Reveal — simple fade, no stagger */
+.reveal {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+}
+
+/* Short-screen breakpoints */
+@media (max-height: 700px) {
+    :root {
+        --slide-padding: clamp(0.75rem, 3vw, 2.5rem);
+        --title-size: clamp(1.75rem, 6vw, 4rem);
+        --h1-size: clamp(1.5rem, 5vw, 3rem);
+    }
+    .nav-dots { display: none; }
+}
+
+@media (max-height: 600px) {
+    :root {
+        --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+        --title-size: clamp(1.5rem, 5vw, 2.5rem);
+        --h1-size: clamp(1.25rem, 4vw, 2.25rem);
+        --body-size: clamp(0.8rem, 1.2vw, 1rem);
+    }
+    .keyboard-hint { display: none; }
+    .s-title .logo { max-width: clamp(100px, 14vw, 180px); }
+}
+
+@media (max-width: 900px) {
+    .hero-split, .teach-split {
+        grid-template-columns: 1fr;
+        gap: clamp(1rem, 3vh, 2rem);
+    }
+    .hero-image { max-height: 40vh; }
+    .teach-collage {
+        max-width: 500px;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .missions-grid, .roles-grid, .perks, .schools, .stat-row, .facts, .qr-row {
+        grid-template-columns: 1fr;
+    }
+    .s-title .meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-dots" aria-label="Slide navigation">
+    <button class="nav-dot active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="nav-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="nav-dot" data-slide="2" aria-label="Slide 3"></button>
+    <button class="nav-dot" data-slide="3" aria-label="Slide 4"></button>
+    <button class="nav-dot" data-slide="4" aria-label="Slide 5"></button>
+    <button class="nav-dot" data-slide="5" aria-label="Slide 6"></button>
+    <button class="nav-dot" data-slide="6" aria-label="Slide 7"></button>
+    <button class="nav-dot" data-slide="7" aria-label="Slide 8"></button>
+    <button class="nav-dot" data-slide="8" aria-label="Slide 9"></button>
+</nav>
+
+
+<main>
+
+<!-- S1 — Title (split layout: text left, rover right) -->
+<section class="slide s-title" data-slide="0">
+    <span class="slide-tag">SC ROBOTICS</span>
+    <span class="slide-index">01 / 09</span>
+    <div class="hero-split">
+        <div class="hero-text reveal">
+            <img class="logo" src="sc-robotics-logo.png" alt="SC Robotics logo" />
+            <div class="eyebrow">Saddleback College · Irvine Valley College</div>
+            <h1>We build a Mars rover.</h1>
+            <p class="sub">Currently recruiting for 2026/2027.</p>
+        </div>
+        <div class="hero-image reveal">
+            <img src="rover-servicing.jpg" alt="SC Robotics rover performing equipment servicing mission" />
+        </div>
+    </div>
+    <div class="meta reveal">
+        <span>UNIVERSITY ROVER CHALLENGE FINALIST · 5× SINCE 2020</span>
+        <span>APPLY TODAY</span>
+    </div>
+</section>
+
+<!-- S2 — Hook / credibility -->
+<section class="slide s-hook" data-slide="1">
+    <span class="slide-tag">CREDIBILITY</span>
+    <span class="slide-index">02 / 09</span>
+    <h2 class="reveal">Every summer we drive to Utah and beat four-year universities.</h2>
+    <div class="stat-row">
+        <div class="stat reveal">
+            <div class="num">5<span class="accent">×</span></div>
+            <div class="label">URC finalist · 2020–2025 · top ~40 teams worldwide each year</div>
+        </div>
+        <div class="stat reveal">
+            <div class="num">17<span class="accent">/114</span></div>
+            <div class="label">Our place at URC 2025 · 114 teams · 15 countries</div>
+        </div>
+    </div>
+    <div class="only-banner reveal">
+        The <span class="underline">only</span> community college in the field.
+    </div>
+</section>
+
+<!-- S3 (was S4) — 4 missions -->
+<section class="slide s-missions has-hero" data-slide="2">
+    <div class="hero-bg"><img src="rover-golden-hour.jpg" alt="Rover at golden hour in Utah red rock country" /></div>
+    <span class="slide-tag">WHAT IT DOES</span>
+    <span class="slide-index">03 / 09</span>
+    <h2 class="reveal">4 missions.</h2>
+    <div class="missions-grid">
+        <div class="mission reveal">
+            <div class="num">MISSION 01</div>
+            <h3>Autonomous Navigation</h3>
+            <p>No driver. GPS + ArUco markers on ROS 2 <strong style="color:var(--bone);">Nav2</strong> today. Next season: GPU-accelerated perception with <strong style="color:var(--bone);">NVIDIA Isaac ROS</strong> on Jetson.</p>
+        </div>
+        <div class="mission reveal">
+            <div class="num">MISSION 02</div>
+            <h3>Robotic Arm Manipulation</h3>
+            <p>Pick up tools, operate panels, thread cables — all tele-operated.</p>
+        </div>
+        <div class="mission reveal">
+            <div class="num">MISSION 03</div>
+            <h3>Science Sampling</h3>
+            <p>Drill soil, run on-board chemistry, look for signs of past life.</p>
+        </div>
+        <div class="mission reveal">
+            <div class="num">MISSION 04</div>
+            <h3>Equipment Servicing</h3>
+            <p>Deliver payloads, flip switches, type on a keyboard — from a rover.</p>
+        </div>
+    </div>
+</section>
+
+<!-- S5 — The field -->
+<section class="slide s-beat" data-slide="3">
+    <span class="slide-tag">THE FIELD</span>
+    <span class="slide-index">04 / 09</span>
+    <div class="eyebrow reveal">WHO WE COMPETE AGAINST</div>
+    <h2 class="reveal">You've heard of most of these.</h2>
+    <div class="schools">
+        <div class="school reveal">Cornell</div>
+        <div class="school reveal">Carnegie Mellon</div>
+        <div class="school reveal">Georgia Tech</div>
+        <div class="school reveal">Michigan</div>
+        <div class="school reveal">Purdue</div>
+        <div class="school reveal">BYU</div>
+        <div class="school reveal">Missouri S&amp;T</div>
+        <div class="school reveal">West Virginia</div>
+        <div class="school reveal">UC San Diego</div>
+        <div class="school reveal">Northeastern</div>
+        <div class="school reveal">Toronto</div>
+        <div class="school reveal">Waterloo</div>
+    </div>
+    <p class="kicker reveal">In 2025 we finished <strong>ahead of Cornell, Georgia Tech, UC San Diego, and U of Toronto.</strong></p>
+</section>
+
+<!-- S6 — Open roles -->
+<section class="slide s-roles" data-slide="4">
+    <span class="slide-tag">WHO WE NEED</span>
+    <span class="slide-index">05 / 09</span>
+    <h2 class="reveal">We're recruiting four subteams.</h2>
+    <div class="roles-grid">
+        <div class="role reveal">
+            <h3>Electrical</h3>
+            <div class="tools">PCB DESIGN · POWER · WIRING</div>
+            <p>Design boards in-house. Send them to manufacture. Bring them up. Debug real hardware.</p>
+        </div>
+        <div class="role reveal">
+            <h3>Mechanical</h3>
+            <div class="tools">SOLIDWORKS · CAD · CNC · 3D PRINT</div>
+            <p>Drive, chassis, arm, science payload. You model it, you print it, you assemble it.</p>
+        </div>
+        <div class="role reveal">
+            <h3>Programming</h3>
+            <div class="tools">C++ · PYTHON · ROS · OPENCV</div>
+            <p>Autonomy, computer vision, path planning, embedded firmware — the bridge between silicon and dirt.</p>
+        </div>
+        <div class="role reveal">
+            <h3>Science</h3>
+            <div class="tools">BIO · CHEM · GEOLOGY</div>
+            <p>Design the on-board experiments that detect life. Present findings to URC judges.</p>
+        </div>
+    </div>
+</section>
+
+<!-- S6 — We teach -->
+<section class="slide s-teach" data-slide="5">
+    <span class="slide-tag">NO EXPERIENCE REQUIRED</span>
+    <span class="slide-index">06 / 09</span>
+    <div class="teach-split">
+        <div class="teach-text reveal">
+            <p class="callout">Nobody on the team started knowing how to do any of this.</p>
+            <p class="body">We teach SolidWorks, PCB design, ROS, embedded — all of it. What we're looking for is people who want to <strong>learn</strong>, alongside mentors who've already graduated and are working in industry or in their master's programs right now.</p>
+        </div>
+        <div class="teach-collage reveal" aria-hidden="true">
+            <div class="tool-tile"><img src="solidworks-logo.svg" alt="SolidWorks" /></div>
+            <div class="tool-tile"><img src="altium-logo.png" alt="Altium Designer" /></div>
+            <div class="tool-tile"><img src="cpp-logo.svg" alt="C++" /><span class="tool-name">C++</span></div>
+            <div class="tool-tile"><img src="python-logo.svg" alt="Python" /><span class="tool-name">Python</span></div>
+            <div class="tool-tile"><img src="ros-logo.svg" alt="ROS 2" /><span class="tool-name">ROS 2</span></div>
+            <div class="tool-tile"><img src="esp-logo.svg" alt="Espressif / ESP32" /><span class="tool-name">ESP32</span></div>
+            <div class="tool-tile"><img src="ubuntu-logo.svg" alt="Ubuntu" /><span class="tool-name">Ubuntu</span></div>
+            <div class="tool-tile"><img src="linux-tux.png" alt="Linux" /><span class="tool-name">Linux</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- S8 — What you get -->
+<section class="slide s-get" data-slide="6">
+    <span class="slide-tag">WHAT YOU WALK AWAY WITH</span>
+    <span class="slide-index">07 / 09</span>
+    <h2 class="reveal" style="color: var(--red);">Why join?</h2>
+    <div class="perks">
+        <div class="perk reveal"><span class="bullet">01</span><span>Portfolio work on a rover that actually competes</span></div>
+        <div class="perk reveal"><span class="bullet">02</span><span>A trip to Utah for URC finals</span></div>
+        <div class="perk reveal"><span class="bullet">03</span><span>Direct mentorship from working engineers</span></div>
+        <div class="perk reveal"><span class="bullet">04</span><span>A team that transfers to UCI, UCLA, UCSD, Cal Poly, Berkeley</span></div>
+        <div class="perk reveal"><span class="bullet">05</span><span>Reference letters that mean something</span></div>
+        <div class="perk reveal"><span class="bullet">06</span><span>Hands-on experience you cannot get in a lecture</span></div>
+    </div>
+</section>
+
+<!-- S9 — Logistics -->
+<section class="slide s-logistics has-hero" data-slide="7">
+    <div class="hero-bg"><img src="rover-mdrs.jpg" alt="Rover at Mars Desert Research Station in Utah" /></div>
+    <span class="slide-tag">LOGISTICS</span>
+    <span class="slide-index">08 / 09</span>
+    <h2 class="reveal">Here's what it looks like.</h2>
+    <div class="facts">
+        <div class="fact reveal">
+            <div class="key">WHEN</div>
+            <div class="val">Sundays</div>
+            <div class="detail">Weekly meetings, year-round — including summer.</div>
+        </div>
+        <div class="fact reveal">
+            <div class="key">WHERE</div>
+            <div class="val">Science Building</div>
+            <div class="detail">Saddleback College campus.</div>
+        </div>
+        <div class="fact reveal">
+            <div class="key">TIME COMMITMENT</div>
+            <div class="val">5–20 hrs/wk</div>
+            <div class="detail">You get what you give. We work around your class schedule.</div>
+        </div>
+        <div class="fact reveal">
+            <div class="key">COST</div>
+            <div class="val">$0</div>
+            <div class="detail">Corporate sponsors + foundation funding.</div>
+        </div>
+    </div>
+</section>
+
+<!-- S10 — The ask (TWO QRs) -->
+<section class="slide s-ask" data-slide="8">
+    <span class="slide-tag">APPLY TODAY</span>
+    <span class="slide-index">09 / 09</span>
+    <h1 class="reveal">Applications live in Discord.</h1>
+
+    <div class="qr-row">
+        <div class="qr-card discord reveal">
+            <div class="qr-wrap"><img src="qr-discord.png" alt="Scan to join Discord" /></div>
+            <div class="qr-name">Discord</div>
+            <div class="qr-url discord-url">discord.gg/USzmfYwAUa</div>
+        </div>
+        <div class="qr-card website reveal">
+            <div class="qr-wrap"><img src="qr-website.png" alt="Scan to open website" /></div>
+            <div class="qr-name">Website</div>
+            <div class="qr-url">saddlebackcollegerobotics.com</div>
+        </div>
+    </div>
+
+    <p class="subnote reveal">Info session in the next two weeks — details posted there.</p>
+</section>
+
+</main>
+
+<script>
+(function() {
+    'use strict';
+
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.nav-dot');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    // Reveal animations via IntersectionObserver
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+    // Track which slide is active
+    const slideObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                const idx = parseInt(entry.target.dataset.slide, 10);
+                setActive(idx);
+            }
+        });
+    }, { threshold: [0.5] });
+
+    slides.forEach((slide) => slideObserver.observe(slide));
+
+    function setActive(idx) {
+        currentSlide = idx;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === idx);
+        });
+    }
+
+    function goToSlide(idx) {
+        if (idx < 0 || idx >= totalSlides) return;
+        slides[idx].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goToSlide(i));
+    });
+
+    document.addEventListener('keydown', (e) => {
+        // Number keys 1–9 jump directly to that slide (1-indexed)
+        if (e.key >= '1' && e.key <= '9') {
+            const target = parseInt(e.key, 10) - 1;
+            if (target < totalSlides) {
+                e.preventDefault();
+                goToSlide(target);
+                return;
+            }
+        }
+
+        switch (e.key) {
+            case 'ArrowRight':
+            case 'ArrowDown':
+            case ' ':
+            case 'PageDown':
+                e.preventDefault();
+                goToSlide(currentSlide + 1);
+                break;
+            case 'ArrowLeft':
+            case 'ArrowUp':
+            case 'PageUp':
+                e.preventDefault();
+                goToSlide(currentSlide - 1);
+                break;
+            case 'Home':
+                e.preventDefault();
+                goToSlide(0);
+                break;
+            case 'End':
+                e.preventDefault();
+                goToSlide(totalSlides - 1);
+                break;
+        }
+    });
+
+    let touchStartY = 0;
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+        const touchEndY = e.changedTouches[0].screenY;
+        const dy = touchStartY - touchEndY;
+        if (Math.abs(dy) < 50) return;
+        goToSlide(currentSlide + (dy > 0 ? 1 : -1));
+    }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
