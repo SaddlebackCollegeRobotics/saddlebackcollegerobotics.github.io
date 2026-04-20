@@ -844,6 +844,43 @@ h1, h2, h3 {
 /* =========================================
    NAV
    ========================================= */
+.floating-qr {
+    position: fixed;
+    bottom: clamp(0.75rem, 1.8vh, 1.5rem);
+    right: clamp(0.75rem, 1.8vw, 1.5rem);
+    z-index: 200;
+    display: flex;
+    align-items: flex-end;
+    gap: clamp(0.4rem, 0.8vw, 0.75rem);
+    text-decoration: none;
+    color: var(--bone);
+}
+
+.floating-qr-arrow {
+    font-family: 'Roboto Mono', monospace;
+    font-size: clamp(0.7rem, 1vw, 0.95rem);
+    color: var(--bone);
+    background: rgba(0,0,0,0.55);
+    padding: 0.4rem 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    line-height: 1;
+    align-self: flex-end;
+    margin-bottom: 0.4rem;
+    white-space: nowrap;
+}
+
+.floating-qr img {
+    width: clamp(72px, 9vw, 120px);
+    height: clamp(72px, 9vw, 120px);
+    background: #ffffff;
+    padding: 6px;
+    border: 2px solid #ffffff;
+    image-rendering: pixelated;
+    display: block;
+}
+
 .nav-dots {
     position: fixed;
     right: clamp(1rem, 2vw, 2rem);
@@ -946,6 +983,11 @@ h1, h2, h3 {
 </style>
 </head>
 <body>
+
+<a class="floating-qr" href="https://saddlebackcollegerobotics.com" target="_blank" rel="noopener" aria-label="Scan or click — visit saddlebackcollegerobotics.com">
+    <span class="floating-qr-arrow" aria-hidden="true">SCAN&nbsp;&nbsp;↘</span>
+    <img src="qr-website.png" alt="QR code to saddlebackcollegerobotics.com" />
+</a>
 
 <nav class="nav-dots" aria-label="Slide navigation">
     <button class="nav-dot active" data-slide="0" aria-label="Slide 1"></button>
