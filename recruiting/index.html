@@ -336,8 +336,75 @@ h1, h2, h3 {
 .s-missions h2 {
     font-size: var(--h1-size);
     color: var(--bone);
-    margin-bottom: clamp(1.5rem, 4vh, 3rem);
+    margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
     max-width: 20ch;
+}
+
+.missions-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.missions-text {
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    min-width: 0;
+}
+
+.missions-lede {
+    font-family: 'Roboto Mono', monospace;
+    font-size: var(--h3-size);
+    color: var(--bone);
+    line-height: 1.45;
+    margin-bottom: clamp(1rem, 2.5vh, 1.75rem);
+}
+
+.mission-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.5rem, 1vh, 0.85rem);
+}
+
+.mission-list li {
+    font-family: 'Roboto Mono', monospace;
+    font-size: var(--body-size);
+    color: var(--bone);
+    line-height: 1.45;
+    padding-left: clamp(0.75rem, 1.2vw, 1.1rem);
+    border-left: 2px solid var(--red);
+}
+
+.mission-list strong {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 700;
+    color: var(--bone);
+    display: block;
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    margin-bottom: 0.15em;
+}
+
+.missions-image {
+    width: 100%;
+    height: 100%;
+    max-height: 75vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.missions-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .s-missions h2 .red { color: var(--red); }
@@ -832,11 +899,11 @@ h1, h2, h3 {
 }
 
 @media (max-width: 900px) {
-    .hero-split, .teach-split {
+    .hero-split, .teach-split, .missions-split {
         grid-template-columns: 1fr;
         gap: clamp(1rem, 3vh, 2rem);
     }
-    .hero-image { max-height: 40vh; }
+    .hero-image, .missions-image { max-height: 40vh; }
     .teach-collage {
         max-width: 500px;
         grid-template-columns: repeat(4, 1fr);
@@ -918,32 +985,23 @@ h1, h2, h3 {
     </div>
 </section>
 
-<!-- S3 (was S4) — 4 missions -->
-<section class="slide s-missions has-hero" data-slide="2">
-    <div class="hero-bg"><img src="rover-golden-hour.jpg" alt="Rover at golden hour in Utah red rock country" /></div>
+<!-- S3 — 4 missions (text box + rover photo) -->
+<section class="slide s-missions" data-slide="2">
     <span class="slide-tag">WHAT IT DOES</span>
     <span class="slide-index">03 / 09</span>
-    <h2 class="reveal">4 missions.</h2>
-    <div class="missions-grid">
-        <div class="mission reveal">
-            <div class="num">MISSION 01</div>
-            <h3>Autonomous Navigation</h3>
-            <p>No driver. GPS + ArUco markers on ROS 2 <strong style="color:var(--bone);">Nav2</strong> today. Next season: GPU-accelerated perception with <strong style="color:var(--bone);">NVIDIA Isaac ROS</strong> on Jetson.</p>
+    <div class="missions-split">
+        <div class="missions-text reveal">
+            <h2>4 missions.</h2>
+            <p class="missions-lede">That means a dexterous arm, long-range driving across the desert, and a way to detect biologic life.</p>
+            <ul class="mission-list">
+                <li><strong>Autonomous Navigation</strong> — GPS + ArUco on ROS 2 Nav2 · Isaac ROS on Jetson next season</li>
+                <li><strong>Robotic Arm Manipulation</strong> — pick up tools, operate panels, thread cables</li>
+                <li><strong>Science Sampling</strong> — drill soil, on-board chemistry, look for signs of past life</li>
+                <li><strong>Equipment Servicing</strong> — deliver payloads, flip switches, type on a keyboard</li>
+            </ul>
         </div>
-        <div class="mission reveal">
-            <div class="num">MISSION 02</div>
-            <h3>Robotic Arm Manipulation</h3>
-            <p>Pick up tools, operate panels, thread cables — all tele-operated.</p>
-        </div>
-        <div class="mission reveal">
-            <div class="num">MISSION 03</div>
-            <h3>Science Sampling</h3>
-            <p>Drill soil, run on-board chemistry, look for signs of past life.</p>
-        </div>
-        <div class="mission reveal">
-            <div class="num">MISSION 04</div>
-            <h3>Equipment Servicing</h3>
-            <p>Deliver payloads, flip switches, type on a keyboard — from a rover.</p>
+        <div class="missions-image reveal">
+            <img src="rover-golden-hour.jpg" alt="Rover at golden hour in Utah red rock country" />
         </div>
     </div>
 </section>
