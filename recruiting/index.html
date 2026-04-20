@@ -15,7 +15,18 @@
    =========================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body { height: 100%; overflow-x: hidden; }
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE / old Edge */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {        /* Chrome / Safari / new Edge */
+    width: 0;
+    height: 0;
+    display: none;
+}
 html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
 
 body {
