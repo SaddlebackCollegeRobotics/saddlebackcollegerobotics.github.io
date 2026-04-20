@@ -841,6 +841,17 @@ h1, h2, h3 {
 
 .s-ask .subnote strong { color: var(--red); }
 
+.apply-pointer {
+    position: absolute;
+    right: clamp(1rem, 4vw, 4rem);
+    bottom: 0;
+    height: min(70vh, 600px);
+    width: auto;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 1;
+}
+
 /* =========================================
    NAV
    ========================================= */
@@ -1191,6 +1202,7 @@ body[data-slide="8"] .floating-qr { display: none; }
 <section class="slide s-ask" data-slide="8">
     <span class="slide-tag">APPLY TODAY</span>
     <span class="slide-index">09 / 09</span>
+    <img class="apply-pointer" src="jacob-pointing.png" alt="Team member pointing at the apply QR codes" />
     <h1 class="reveal">Applications live in Discord.</h1>
 
     <div class="qr-row">
