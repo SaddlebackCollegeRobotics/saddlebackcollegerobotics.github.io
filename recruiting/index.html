@@ -611,6 +611,14 @@ h1, h2, h3 {
     line-height: 1.4;
 }
 
+.why-image {
+    width: 100%;
+    max-height: clamp(200px, 40vh, 360px);
+    object-fit: cover;
+    display: block;
+    margin-top: clamp(1rem, 2.5vh, 2rem);
+}
+
 /* =========================================
    S6 — THE ASK (TWO QRs)
    ========================================= */
@@ -706,7 +714,7 @@ h1, h2, h3 {
 
 .apply-pointer {
     position: absolute;
-    right: clamp(1rem, 4vw, 4rem);
+    right: 0;
     bottom: 0;
     height: min(70vh, 600px);
     width: auto;
@@ -1044,6 +1052,7 @@ body[data-slide="5"] .floating-qr { display: none; }
                     <div class="detail">Corporate sponsors + foundation funding.</div>
                 </div>
             </div>
+            <img class="why-image reveal" src="rover-mdrs.jpg" alt="Rover at the Mars Desert Research Station in Utah" />
         </div>
     </div>
 </section>
@@ -1081,7 +1090,7 @@ const ROVER_VIDEO_ID = '36oEEap9BaM';
 const ROVER_CLIPS = {
     harshDriving:     { start: 25,  end: 30  },  // 0:25–0:30 drive / suspension
     arm5kg:           { start: 53,  end: 56  },  // 0:53–0:56 arm lifting 5kg
-    armCad:           { start: 65,  end: 83  },  // 1:05–1:23 SolidWorks arm CAD
+    armCad:           { start: 65,  end: 81  },  // 1:05–1:21 SolidWorks arm CAD (trimmed 2s)
     armIK:            { start: 103, end: 109 },  // 1:43–1:49 inverse kinematics
     armAltium:        { start: 116, end: 120 },  // 1:56–2:00 Altium arm PDB
     longRange:        { start: 143, end: 150 },  // 2:23–2:30 long range drive
