@@ -18,11 +18,11 @@
 html, body {
     height: 100%;
     overflow-x: hidden;
-    scrollbar-width: none;       /* Firefox */
-    -ms-overflow-style: none;    /* IE / old Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 html::-webkit-scrollbar,
-body::-webkit-scrollbar {        /* Chrome / Safari / new Edge */
+body::-webkit-scrollbar {
     width: 0;
     height: 0;
     display: none;
@@ -39,19 +39,17 @@ body {
 }
 
 :root {
-    /* Brand palette (direct from saddlebackcollegerobotics.com) */
     --red:      #c3080f;
     --red-2:    #a70a0f;
-    --ink:      #1a1a1a;   /* paletteColor7 */
-    --ink-2:    #1f1f1f;   /* paletteColor8 */
-    --ink-3:    #292929;   /* paletteColor6 */
+    --ink:      #1a1a1a;
+    --ink-2:    #1f1f1f;
+    --ink-3:    #292929;
     --bone:     #ffffff;
-    --bone-2:   #dfdad1;   /* warm divider */
+    --bone-2:   #dfdad1;
     --muted:    #a5a5a5;
     --discord:  #5865F2;
     --line:     rgba(255,255,255,0.1);
 
-    /* Type scale */
     --title-size: clamp(2rem, 7.5vw, 6.5rem);
     --h1-size:    clamp(1.75rem, 5.5vw, 4.5rem);
     --h2-size:    clamp(1.25rem, 3.2vw, 2.4rem);
@@ -77,13 +75,9 @@ body {
     background: var(--ink);
 }
 
-.slide::before {
-    display: none;
-}
-
+.slide::before { display: none; }
 .slide > * { position: relative; z-index: 1; }
 
-/* Slide chrome */
 .slide-index {
     position: absolute;
     top: calc(var(--slide-padding) * 0.6);
@@ -104,43 +98,8 @@ h1, h2, h3 {
     font-weight: 800;
 }
 
-/* Shared — hero photo background for select slides */
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Title slide — zoom in, pan toward the rover */
-.s-title .hero-bg img {
-    object-position: 25% 70%;
-    transform: scale(1.44);
-    transform-origin: 25% 70%;
-}
-
-.hero-bg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.25);
-}
-
-.slide.has-hero::before {
-    /* kill the red radial glow on photo slides */
-    display: none;
-}
-
-
 /* =========================================
-   S1 — TITLE (split: text left, rover right)
+   S1 — TITLE
    ========================================= */
 .s-title {
     justify-content: center;
@@ -182,13 +141,6 @@ h1, h2, h3 {
     object-fit: cover;
     object-position: 30% 70%;
     display: block;
-}
-
-.glass-hero {
-    position: relative;
-    padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 3.5vw, 3rem);
-    background: var(--ink-2);
-    border: 1px solid var(--line);
 }
 
 .s-title .logo {
@@ -242,9 +194,65 @@ h1, h2, h3 {
 }
 
 /* =========================================
-   S2 — HOOK / CREDIBILITY
+   S2 — ROVER SUBSYSTEMS VIDEO COLLAGE
+   ========================================= */
+.s-rover {
+    padding: 0;
+    justify-content: stretch;
+}
+
+.rover-collage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: clamp(2px, 0.3vw, 6px);
+    width: 100%;
+    height: 100%;
+    background: var(--ink);
+}
+
+.collage-cell {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.collage-cell iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border: 0;
+    display: block;
+}
+
+.s-rover .slide-index {
+    z-index: 10;
+    color: rgba(255,255,255,0.85);
+    mix-blend-mode: difference;
+}
+
+/* =========================================
+   S3 — CREDIBILITY + SCHOOLS (merged)
    ========================================= */
 .s-hook { justify-content: center; gap: clamp(1rem, 3vh, 2rem); }
+
+.credibility-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    max-width: 1400px;
+    width: 100%;
+}
+
+.cred-left {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2.5vh, 1.75rem);
+    min-width: 0;
+}
 
 .s-hook h2 {
     font-size: var(--h2-size);
@@ -258,9 +266,8 @@ h1, h2, h3 {
 
 .stat-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-    gap: clamp(1rem, 3vw, 3rem);
-    max-width: 1400px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: clamp(1rem, 2.5vw, 2rem);
 }
 
 .stat {
@@ -270,7 +277,7 @@ h1, h2, h3 {
 
 .stat .num {
     font-family: 'Lexend Deca', sans-serif;
-    font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+    font-size: clamp(2rem, 4.5vw, 3.75rem);
     color: var(--bone);
     line-height: 0.9;
     font-weight: 800;
@@ -291,259 +298,82 @@ h1, h2, h3 {
 }
 
 .only-banner {
-    margin-top: clamp(1.25rem, 3vh, 2rem);
     padding-left: clamp(0.75rem, 1.5vw, 1.25rem);
     border-left: 4px solid var(--red);
     color: var(--bone);
     font-family: 'Lexend Deca', sans-serif;
-    font-size: clamp(1.25rem, 3.5vw, 2.75rem);
+    font-size: clamp(1.1rem, 2.2vw, 1.85rem);
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.15;
     letter-spacing: -0.01em;
-    max-width: 1400px;
 }
 
-.only-banner .underline {
-    color: var(--red);
-    font-style: italic;
-}
-
-/* =========================================
-   S3 — LOOK
-   ========================================= */
-.s-look { justify-content: center; align-items: center; text-align: center; }
-
-.s-look .arrow {
-    font-family: 'Lexend Deca', sans-serif;
-    color: var(--red);
-    font-size: clamp(1.5rem, 4vw, 3rem);
-    margin-bottom: clamp(1rem, 3vh, 2rem);
-    letter-spacing: 0.3em;
-    font-weight: 900;
-}
-
-.s-look h1 {
-    font-size: var(--title-size);
-    color: var(--bone);
-    max-width: 14ch;
-}
-
-.s-look h1 .red { color: var(--red); }
-
-.s-look .note {
-    margin-top: clamp(1rem, 3vh, 2rem);
-    font-size: var(--h3-size);
-    color: var(--bone);
-    max-width: 52ch;
-    font-family: 'Roboto Mono', monospace;
-    line-height: 1.55;
-}
-
-/* =========================================
-   S4 — MISSIONS
-   ========================================= */
-.s-missions { justify-content: center; }
-
-.s-missions h2 {
-    font-size: var(--h1-size);
-    color: var(--bone);
-    margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
-    max-width: 20ch;
-}
-
-.missions-split {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(1.5rem, 4vw, 3rem);
-    align-items: center;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.s-missions { align-items: center; }
-
-.missions-text {
-    background: var(--ink-2);
-    border: 1px solid var(--line);
-    padding: clamp(1.75rem, 4vw, 3.5rem);
+.cred-right {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 1.5vh, 1rem);
     min-width: 0;
 }
 
-.missions-lede {
-    font-family: 'Roboto Mono', monospace;
-    font-size: clamp(1.05rem, 1.8vw, 1.5rem);
-    color: var(--bone);
-    line-height: 1.45;
-    margin-bottom: clamp(1.5rem, 3vh, 2.25rem);
-}
-
-.mission-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.85rem, 1.6vh, 1.35rem);
-}
-
-.mission-list li {
-    font-family: 'Roboto Mono', monospace;
-    font-size: clamp(0.9rem, 1.35vw, 1.1rem);
-    color: var(--bone);
-    line-height: 1.5;
-    padding-left: clamp(1rem, 1.5vw, 1.4rem);
-    border-left: 3px solid var(--red);
-}
-
-.mission-list strong {
-    font-family: 'Lexend Deca', sans-serif;
-    font-weight: 700;
-    color: var(--bone);
-    display: block;
-    font-size: clamp(1.15rem, 1.8vw, 1.5rem);
-    margin-bottom: 0.25em;
-}
-
-.missions-image {
-    width: 100%;
-    height: 100%;
-    max-height: 75vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-}
-
-.missions-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.s-missions h2 .red { color: var(--red); }
-
-.missions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    gap: clamp(0.75rem, 1.5vw, 1.5rem);
-    max-width: 1400px;
-}
-
-.mission {
-    border: 1px solid var(--line);
-    padding: clamp(1rem, 2.5vw, 2rem);
-    background: var(--ink-2);
-}
-
-.mission .num {
-    font-family: 'Roboto Mono', monospace;
-    color: var(--red);
-    font-size: var(--small-size);
-    letter-spacing: 0.18em;
-    margin-bottom: clamp(0.5rem, 1vh, 0.75rem);
-    font-weight: 700;
-}
-
-.mission h3 {
+.cred-right .schools-label {
     font-family: 'Lexend Deca', sans-serif;
     font-size: var(--h3-size);
     color: var(--bone);
-    margin-bottom: clamp(0.4rem, 1vh, 0.75rem);
-    line-height: 1.1;
     font-weight: 700;
-}
-
-.mission p {
-    font-size: var(--body-size);
-    color: var(--muted);
-    line-height: 1.5;
-    font-family: 'Roboto Mono', monospace;
-}
-
-/* =========================================
-   S5 — WHO WE BEAT
-   ========================================= */
-.s-beat { justify-content: center; }
-
-.s-beat .eyebrow {
-    font-family: 'Roboto Mono', monospace;
-    color: var(--red);
-    font-size: var(--small-size);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
-    font-weight: 700;
-}
-
-.s-beat h2 {
-    font-size: var(--h1-size);
-    color: var(--bone);
-    max-width: 20ch;
-    margin-bottom: clamp(1rem, 3vh, 2rem);
 }
 
 .schools {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-    gap: clamp(0.5rem, 1vw, 1rem);
-    max-width: 1400px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    gap: clamp(0.4rem, 0.8vw, 0.8rem);
 }
 
 .school {
     font-family: 'Lexend Deca', sans-serif;
-    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-size: clamp(0.9rem, 1.4vw, 1.15rem);
     color: var(--bone);
-    padding: clamp(0.5rem, 1vh, 0.9rem) clamp(0.75rem, 1.5vw, 1.25rem);
+    padding: clamp(0.4rem, 0.8vh, 0.7rem) clamp(0.6rem, 1.2vw, 1rem);
     border-left: 3px solid var(--red);
     background: var(--ink-2);
     line-height: 1.1;
     font-weight: 700;
 }
 
-.s-beat .kicker {
-    margin-top: clamp(1rem, 3vh, 2rem);
-    font-size: var(--h3-size);
-    color: var(--bone);
-    max-width: 48ch;
-    font-family: 'Roboto Mono', monospace;
-    line-height: 1.5;
+/* =========================================
+   S4 — ROLES + TEACH (merged)
+   ========================================= */
+.s-roles {
+    justify-content: center;
+    gap: clamp(1rem, 2.5vh, 2rem);
 }
 
-.s-beat .kicker strong { color: var(--red); font-weight: 700; }
-
-/* =========================================
-   S6 — OPEN ROLES
-   ========================================= */
-.s-roles { justify-content: center; }
-
 .s-roles h2 {
-    font-size: var(--h1-size);
+    font-size: clamp(1.5rem, 3.8vw, 3rem);
     color: var(--bone);
-    margin-bottom: clamp(1rem, 3vh, 2rem);
-    max-width: 20ch;
+    max-width: 22ch;
 }
 
 .s-roles h2 .red { color: var(--red); }
 
 .roles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: clamp(0.6rem, 1.2vw, 1rem);
     max-width: 1400px;
+    width: 100%;
 }
 
 .role {
-    padding: clamp(1rem, 2.2vw, 1.75rem);
+    padding: clamp(0.85rem, 1.8vw, 1.4rem);
     background: var(--ink-2);
     border-top: 4px solid var(--red);
 }
 
 .role h3 {
     font-family: 'Lexend Deca', sans-serif;
-    font-size: var(--h2-size);
+    font-size: clamp(1.05rem, 1.8vw, 1.4rem);
     color: var(--bone);
-    margin-bottom: clamp(0.4rem, 1vh, 0.6rem);
+    margin-bottom: clamp(0.3rem, 0.8vh, 0.5rem);
     font-weight: 700;
     line-height: 1.05;
 }
@@ -553,71 +383,66 @@ h1, h2, h3 {
     color: var(--red);
     font-size: var(--small-size);
     letter-spacing: 0.08em;
-    margin-bottom: clamp(0.5rem, 1vh, 0.75rem);
+    margin-bottom: clamp(0.4rem, 0.8vh, 0.6rem);
     font-weight: 600;
 }
 
 .role p {
-    font-size: var(--body-size);
+    font-size: clamp(0.8rem, 1.15vw, 0.95rem);
     color: var(--bone);
+    line-height: 1.45;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.teach-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: center;
+    max-width: 1400px;
+    width: 100%;
+}
+
+.teach-text .callout {
+    font-size: clamp(1.1rem, 2.4vw, 1.85rem);
+    color: var(--bone);
+    font-family: 'Lexend Deca', sans-serif;
+    line-height: 1.1;
+    max-width: 24ch;
+    font-weight: 800;
+}
+
+.teach-text .body {
+    margin-top: clamp(0.5rem, 1.5vh, 1rem);
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    color: var(--bone);
+    max-width: 42ch;
     line-height: 1.5;
     font-family: 'Roboto Mono', monospace;
 }
 
-/* =========================================
-   S6 — WE TEACH (split: text left, tool collage right)
-   ========================================= */
-.s-teach { justify-content: center; }
-
-.teach-split {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: clamp(1.5rem, 4vw, 3.5rem);
-    align-items: center;
-    width: 100%;
-    max-width: 1400px;
-}
-
-.teach-text { min-width: 0; }
-
-.s-teach .callout {
-    font-size: var(--h2-size);
-    color: var(--bone);
-    font-family: 'Lexend Deca', sans-serif;
-    line-height: 1.1;
-    max-width: 26ch;
-    font-weight: 800;
-}
-
-.s-teach .body {
-    margin-top: clamp(1rem, 2.5vh, 1.75rem);
-    font-size: var(--body-size);
-    color: var(--bone);
-    max-width: 54ch;
-    line-height: 1.55;
-    font-family: 'Roboto Mono', monospace;
-}
-
-.s-teach .body strong { color: var(--red); font-weight: 600; }
+.teach-text .body strong { color: var(--red); font-weight: 600; }
 
 .teach-collage {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(0.4rem, 1vw, 0.75rem);
+    gap: clamp(0.4rem, 0.8vw, 0.6rem);
     min-width: 0;
 }
 
 .tool-tile {
     aspect-ratio: 1;
-    padding: clamp(0.5rem, 1.2vw, 1rem);
+    padding: clamp(0.4rem, 1vw, 0.75rem);
     background: var(--ink-2);
     border: 1px solid var(--line);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: clamp(0.25rem, 0.8vh, 0.6rem);
+    gap: clamp(0.2rem, 0.6vh, 0.4rem);
     min-height: 0;
+    position: relative;
+    overflow: hidden;
 }
 
 .tool-tile img {
@@ -631,7 +456,7 @@ h1, h2, h3 {
 
 .tool-tile .tool-name {
     font-family: 'Lexend Deca', sans-serif;
-    font-size: clamp(0.7rem, 1.1vw, 0.95rem);
+    font-size: clamp(0.65rem, 1vw, 0.85rem);
     font-weight: 700;
     color: var(--bone);
     line-height: 1;
@@ -639,70 +464,120 @@ h1, h2, h3 {
     letter-spacing: -0.01em;
 }
 
-/* =========================================
-   S8 — WHAT YOU GET
-   ========================================= */
-.s-get { justify-content: center; }
-
-.s-get h2 {
-    font-size: var(--h1-size);
-    color: var(--bone);
-    margin-bottom: clamp(2.5rem, 7vh, 5rem);
-    max-width: 18ch;
+.tool-tile-video {
+    padding: 0;
+    background: #000;
 }
 
-.s-get h2 .red { color: var(--red); }
+.tool-tile-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border: 0;
+    display: block;
+}
 
-.perks {
+.tool-tile-video .tool-name {
+    position: absolute;
+    bottom: clamp(0.25rem, 0.8vh, 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 2px 8px;
+    background: rgba(0,0,0,0.65);
+    z-index: 2;
+    white-space: nowrap;
+}
+
+/* =========================================
+   S5 — WHY JOIN + LOGISTICS (merged)
+   ========================================= */
+.s-why { justify-content: center; }
+
+.why-logistics-split {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
     max-width: 1400px;
     width: 100%;
-    margin: 0 auto;
-    align-self: center;
+}
+
+.s-why h2 {
+    font-size: clamp(1.5rem, 3.8vw, 3rem);
+    color: var(--red);
+    margin-bottom: clamp(1rem, 3vh, 2rem);
+    max-width: 16ch;
+}
+
+.perks {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 1.5vh, 1.25rem);
 }
 
 .perk {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(0.6rem, 1.2vh, 1rem);
-    padding-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+    align-items: baseline;
+    padding-top: clamp(0.6rem, 1.2vh, 1rem);
     border-top: 2px solid var(--red);
     color: var(--bone);
     font-family: 'Roboto Mono', monospace;
-    font-size: var(--body-size);
+    font-size: clamp(0.85rem, 1.25vw, 1.05rem);
     line-height: 1.45;
 }
 
 .perk .bullet {
     font-family: 'Lexend Deca', sans-serif;
     color: var(--red);
-    font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+    font-size: clamp(1.25rem, 2.2vw, 1.85rem);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.02em;
 }
 
-.s-get { align-items: center; justify-content: center; }
+.alumni-row {
+    margin-top: clamp(1rem, 2.5vh, 1.75rem);
+    padding-top: clamp(0.75rem, 1.5vh, 1.25rem);
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.4rem, 1vh, 0.6rem);
+}
 
-/* =========================================
-   S9 — LOGISTICS
-   ========================================= */
-.s-logistics { justify-content: center; }
+.alumni-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: var(--small-size);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+}
 
-.s-logistics h2 {
-    font-size: var(--h1-size);
+.alumni-companies {
+    list-style: none;
+    display: flex;
+    gap: clamp(0.75rem, 1.8vw, 2rem);
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+.alumni-companies li {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
     color: var(--bone);
-    margin-bottom: clamp(1.5rem, 4vh, 3rem);
-    max-width: 22ch;
+    font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
 .facts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-    gap: clamp(1rem, 2.5vw, 2.5rem);
-    max-width: 1400px;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
 .fact {
@@ -716,35 +591,34 @@ h1, h2, h3 {
     font-size: var(--small-size);
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    margin-bottom: clamp(0.4rem, 1vh, 0.75rem);
+    margin-bottom: clamp(0.3rem, 0.8vh, 0.5rem);
     font-weight: 600;
 }
 
 .fact .val {
     font-family: 'Lexend Deca', sans-serif;
-    font-size: var(--h2-size);
+    font-size: clamp(1.1rem, 2vw, 1.65rem);
     color: var(--bone);
     line-height: 1.05;
     font-weight: 800;
 }
 
 .fact .detail {
-    font-size: var(--body-size);
+    font-size: clamp(0.75rem, 1.05vw, 0.9rem);
     color: var(--bone);
-    margin-top: clamp(0.3rem, 1vh, 0.5rem);
+    margin-top: clamp(0.2rem, 0.8vh, 0.4rem);
     font-family: 'Roboto Mono', monospace;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 /* =========================================
-   S10 — THE ASK (TWO QRs)
+   S6 — THE ASK (TWO QRs)
    ========================================= */
 .s-ask {
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-
 
 .s-ask .eyebrow {
     font-family: 'Roboto Mono', monospace;
@@ -830,17 +704,6 @@ h1, h2, h3 {
 
 .qr-card .qr-url.discord-url { color: var(--discord); }
 
-.s-ask .subnote {
-    margin-top: clamp(1rem, 3vh, 2rem);
-    font-size: var(--body-size);
-    color: var(--bone);
-    font-family: 'Roboto Mono', monospace;
-    max-width: 50ch;
-    line-height: 1.5;
-}
-
-.s-ask .subnote strong { color: var(--red); }
-
 .apply-pointer {
     position: absolute;
     right: clamp(1rem, 4vw, 4rem);
@@ -853,7 +716,7 @@ h1, h2, h3 {
 }
 
 /* =========================================
-   NAV
+   NAV / FLOATING QR
    ========================================= */
 .floating-qr {
     position: fixed;
@@ -892,9 +755,10 @@ h1, h2, h3 {
     display: block;
 }
 
-/* Hide the floating QR on the hero (slide 1) and the apply slide (slide 9) */
+/* Hide floating QR on title (0), rover collage (1), and ask (5) slides */
 body[data-slide="0"] .floating-qr,
-body[data-slide="8"] .floating-qr { display: none; }
+body[data-slide="1"] .floating-qr,
+body[data-slide="5"] .floating-qr { display: none; }
 
 .nav-dots {
     position: fixed;
@@ -917,10 +781,7 @@ body[data-slide="8"] .floating-qr { display: none; }
     cursor: pointer;
 }
 
-.nav-dot.active {
-    background: var(--red);
-}
-
+.nav-dot.active { background: var(--red); }
 .nav-dot:hover { background: var(--bone); }
 
 .keyboard-hint {
@@ -937,17 +798,13 @@ body[data-slide="8"] .floating-qr { display: none; }
     font-weight: 500;
 }
 
-/* Reveal — simple fade, no stagger */
 .reveal {
     opacity: 0;
     transition: opacity 0.25s ease;
 }
 
-.reveal.visible {
-    opacity: 1;
-}
+.reveal.visible { opacity: 1; }
 
-/* Short-screen breakpoints */
 @media (max-height: 700px) {
     :root {
         --slide-padding: clamp(0.75rem, 3vw, 2.5rem);
@@ -969,19 +826,23 @@ body[data-slide="8"] .floating-qr { display: none; }
 }
 
 @media (max-width: 900px) {
-    .hero-split, .teach-split, .missions-split {
+    .hero-split,
+    .credibility-split,
+    .why-logistics-split,
+    .teach-row {
         grid-template-columns: 1fr;
         gap: clamp(1rem, 3vh, 2rem);
     }
-    .hero-image, .missions-image { max-height: 40vh; }
+    .hero-image { max-height: 40vh; }
     .teach-collage {
         max-width: 500px;
         grid-template-columns: repeat(4, 1fr);
     }
+    .facts { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 600px) {
-    .missions-grid, .roles-grid, .perks, .schools, .stat-row, .facts, .qr-row {
+    .roles-grid, .schools, .stat-row, .qr-row {
         grid-template-columns: 1fr;
     }
     .s-title .meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
@@ -1011,18 +872,14 @@ body[data-slide="8"] .floating-qr { display: none; }
     <button class="nav-dot" data-slide="3" aria-label="Slide 4"></button>
     <button class="nav-dot" data-slide="4" aria-label="Slide 5"></button>
     <button class="nav-dot" data-slide="5" aria-label="Slide 6"></button>
-    <button class="nav-dot" data-slide="6" aria-label="Slide 7"></button>
-    <button class="nav-dot" data-slide="7" aria-label="Slide 8"></button>
-    <button class="nav-dot" data-slide="8" aria-label="Slide 9"></button>
 </nav>
 
 
 <main>
 
-<!-- S1 — Title (split layout: text left, rover right) -->
+<!-- S1 — Title -->
 <section class="slide s-title" data-slide="0">
-    <span class="slide-tag">SC ROBOTICS</span>
-    <span class="slide-index">01 / 09</span>
+    <span class="slide-index">01 / 06</span>
     <div class="hero-split">
         <div class="hero-text reveal">
             <img class="logo" src="sc-robotics-logo.png" alt="SC Robotics logo" />
@@ -1039,80 +896,66 @@ body[data-slide="8"] .floating-qr { display: none; }
     </div>
 </section>
 
-<!-- S2 — Hook / credibility -->
-<section class="slide s-hook" data-slide="1">
-    <span class="slide-tag">CREDIBILITY</span>
-    <span class="slide-index">02 / 09</span>
-    <h2 class="reveal">We drive to the Mars Desert Research Station in Utah and beat four-year universities.</h2>
-    <div class="stat-row">
-        <div class="stat reveal">
-            <div class="num">5<span class="accent">×</span></div>
-            <div class="label">URC finalist · 2020–2025 · top ~40 teams worldwide each year</div>
-        </div>
-        <div class="stat reveal">
-            <div class="num">17<span class="accent">/114</span></div>
-            <div class="label">Our place at URC 2025 · 114 teams · 15 countries</div>
-        </div>
-    </div>
-    <div class="only-banner reveal">
-        The <span class="underline">only</span> community college in the field to make it to finals.
+<!-- S2 — Rover subsystems video collage (presenter walks up and points) -->
+<section class="slide s-rover" data-slide="1">
+    <span class="slide-index">02 / 06</span>
+    <div class="rover-collage">
+        <div class="collage-cell"><div id="yt-cell-1"></div></div>
+        <div class="collage-cell"><div id="yt-cell-2"></div></div>
+        <div class="collage-cell"><div id="yt-cell-3"></div></div>
+        <div class="collage-cell"><div id="yt-cell-4"></div></div>
     </div>
 </section>
 
-<!-- S3 — 4 missions (text box + rover photo) -->
-<section class="slide s-missions" data-slide="2">
-    <span class="slide-tag">WHAT IT DOES</span>
-    <span class="slide-index">03 / 09</span>
-    <div class="missions-split">
-        <div class="missions-text reveal">
-            <h2>4 missions.</h2>
-            <p class="missions-lede">That means a dexterous arm, long-range driving across the desert, and a way to detect biologic life.</p>
-            <ul class="mission-list">
-                <li><strong>Autonomous Navigation</strong> — GPS + ArUco on ROS 2 Nav2 · Isaac ROS on Jetson next season</li>
-                <li><strong>Robotic Arm Manipulation</strong> — Pick up tools, operate panels, thread cables</li>
-                <li><strong>Science Sampling</strong> — Drill soil, on-board chemistry, look for signs of past life</li>
-                <li><strong>Equipment Servicing</strong> — Deliver payloads, flip switches, type on a keyboard</li>
-            </ul>
+<!-- S3 — Credibility + Schools (merged) -->
+<section class="slide s-hook" data-slide="2">
+    <span class="slide-index">03 / 06</span>
+    <div class="credibility-split">
+        <div class="cred-left">
+            <h2 class="reveal">We drive to the Mars Desert Research Station in Utah and beat four-year universities.</h2>
+            <div class="stat-row">
+                <div class="stat reveal">
+                    <div class="num">5<span class="accent">×</span></div>
+                    <div class="label">URC finalist · 2020–2025 · top ~40 teams worldwide each year</div>
+                </div>
+                <div class="stat reveal">
+                    <div class="num">17<span class="accent">/114</span></div>
+                    <div class="label">Our place at URC 2025 · 114 teams · 15 countries</div>
+                </div>
+            </div>
+            <div class="only-banner reveal">
+                The only community college in the field to make it to finals.
+            </div>
         </div>
-        <div class="missions-image reveal">
-            <img src="rover-golden-hour.jpg" alt="Rover at golden hour in Utah red rock country" />
+        <div class="cred-right">
+            <div class="schools-label reveal">Who we compete alongside:</div>
+            <div class="schools">
+                <div class="school reveal">Cornell</div>
+                <div class="school reveal">Carnegie Mellon</div>
+                <div class="school reveal">Georgia Tech</div>
+                <div class="school reveal">Michigan</div>
+                <div class="school reveal">Purdue</div>
+                <div class="school reveal">BYU</div>
+                <div class="school reveal">Missouri S&amp;T</div>
+                <div class="school reveal">West Virginia</div>
+                <div class="school reveal">UC San Diego</div>
+                <div class="school reveal">Northeastern</div>
+                <div class="school reveal">Toronto</div>
+                <div class="school reveal">Waterloo</div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- S5 — The field -->
-<section class="slide s-beat" data-slide="3">
-    <span class="slide-tag">THE FIELD</span>
-    <span class="slide-index">04 / 09</span>
-    <div class="eyebrow reveal">YOU'VE HEARD OF MOST OF THESE</div>
-    <h2 class="reveal">Who we compete against:</h2>
-    <div class="schools">
-        <div class="school reveal">Cornell</div>
-        <div class="school reveal">Carnegie Mellon</div>
-        <div class="school reveal">Georgia Tech</div>
-        <div class="school reveal">Michigan</div>
-        <div class="school reveal">Purdue</div>
-        <div class="school reveal">BYU</div>
-        <div class="school reveal">Missouri S&amp;T</div>
-        <div class="school reveal">West Virginia</div>
-        <div class="school reveal">UC San Diego</div>
-        <div class="school reveal">Northeastern</div>
-        <div class="school reveal">Toronto</div>
-        <div class="school reveal">Waterloo</div>
-    </div>
-    <p class="kicker reveal">In 2025 we finished <strong>ahead of Cornell, Georgia Tech, UC San Diego, and Toronto.</strong></p>
-</section>
-
-<!-- S6 — Open roles -->
-<section class="slide s-roles" data-slide="4">
-    <span class="slide-tag">WHO WE NEED</span>
-    <span class="slide-index">05 / 09</span>
+<!-- S4 — Roles + Teach (merged) -->
+<section class="slide s-roles" data-slide="3">
+    <span class="slide-index">04 / 06</span>
     <h2 class="reveal">We're recruiting four subteams.</h2>
     <div class="roles-grid">
         <div class="role reveal">
             <h3>Electrical</h3>
             <div class="tools">PCB DESIGN · POWER · WIRING</div>
-            <p>Create LTSpice schematics → Design PCB boards in-house using Altium → Send them to manufacture → Debug and test.</p>
+            <p>LTSpice schematics → Altium PCBs → manufacture → debug and test.</p>
         </div>
         <div class="role reveal">
             <h3>Mechanical</h3>
@@ -1130,20 +973,20 @@ body[data-slide="8"] .floating-qr { display: none; }
             <p>Design the on-board experiments that detect life. Present findings to URC judges.</p>
         </div>
     </div>
-</section>
-
-<!-- S6 — We teach -->
-<section class="slide s-teach" data-slide="5">
-    <span class="slide-tag">NO EXPERIENCE REQUIRED</span>
-    <span class="slide-index">06 / 09</span>
-    <div class="teach-split">
+    <div class="teach-row">
         <div class="teach-text reveal">
             <p class="callout">No prior experience needed.</p>
-            <p class="body">We teach SolidWorks, PCB design, ROS, embedded — all of it. What we're looking for is people who want to <strong>learn</strong>, alongside mentors who've already graduated and are working in industry or in their master's programs right now.</p>
+            <p class="body">We teach all of it. What we look for is people who want to <strong>learn</strong>, alongside mentors already working in industry.</p>
         </div>
         <div class="teach-collage reveal" aria-hidden="true">
-            <div class="tool-tile"><img src="solidworks-logo.svg" alt="SolidWorks" /></div>
-            <div class="tool-tile"><img src="altium-logo.png" alt="Altium Designer" /></div>
+            <div class="tool-tile tool-tile-video">
+                <div id="yt-teach-cad"></div>
+                <span class="tool-name">SolidWorks</span>
+            </div>
+            <div class="tool-tile tool-tile-video">
+                <div id="yt-teach-altium"></div>
+                <span class="tool-name">Altium</span>
+            </div>
             <div class="tool-tile"><img src="cpp-logo.svg" alt="C++" /><span class="tool-name">C++</span></div>
             <div class="tool-tile"><img src="python-logo.svg" alt="Python" /><span class="tool-name">Python</span></div>
             <div class="tool-tile"><img src="ros-logo.svg" alt="ROS 2" /><span class="tool-name">ROS 2</span></div>
@@ -1154,54 +997,60 @@ body[data-slide="8"] .floating-qr { display: none; }
     </div>
 </section>
 
-<!-- S8 — What you get -->
-<section class="slide s-get" data-slide="6">
-    <span class="slide-tag">WHAT YOU WALK AWAY WITH</span>
-    <span class="slide-index">07 / 09</span>
-    <h2 class="reveal" style="color: var(--red);">Why Join?</h2>
-    <div class="perks">
-        <div class="perk reveal"><span class="bullet">01</span><span>Portfolio work on a rover that actually competes</span></div>
-        <div class="perk reveal"><span class="bullet">02</span><span>Direct mentorship from working engineers</span></div>
-        <div class="perk reveal"><span class="bullet">03</span><span>A team that transfers to UCI, UCLA, UCSD, Cal Poly, Berkeley</span></div>
-        <div class="perk reveal"><span class="bullet">04</span><span>Reference letters</span></div>
-        <div class="perk reveal"><span class="bullet">05</span><span>Hands-on experience you cannot get in a lecture</span></div>
+<!-- S5 — Why Join + Logistics (merged) -->
+<section class="slide s-why" data-slide="4">
+    <span class="slide-index">05 / 06</span>
+    <div class="why-logistics-split">
+        <div class="why-left">
+            <h2 class="reveal">Why Join?</h2>
+            <div class="perks">
+                <div class="perk reveal"><span class="bullet">01</span><span>Portfolio work on a rover that actually competes</span></div>
+                <div class="perk reveal"><span class="bullet">02</span><span>Direct mentorship from working engineers</span></div>
+                <div class="perk reveal"><span class="bullet">03</span><span>A team that transfers to UCI, UCLA, UCSD, Cal Poly, Berkeley</span></div>
+                <div class="perk reveal"><span class="bullet">04</span><span>Reference letters</span></div>
+                <div class="perk reveal"><span class="bullet">05</span><span>Hands-on experience you cannot get in a lecture</span></div>
+            </div>
+            <div class="alumni-row reveal">
+                <span class="alumni-label">Our alumni now work at:</span>
+                <ul class="alumni-companies">
+                    <li>SpaceX</li>
+                    <li>Anduril</li>
+                    <li>Mach</li>
+                    <li>NASA</li>
+                    <li>Tesla</li>
+                </ul>
+            </div>
+        </div>
+        <div class="why-right">
+            <div class="facts">
+                <div class="fact reveal">
+                    <div class="key">WHEN</div>
+                    <div class="val">Sundays</div>
+                    <div class="detail">Weekly meetings, year-round — including summer.</div>
+                </div>
+                <div class="fact reveal">
+                    <div class="key">WHERE</div>
+                    <div class="val">Science Building</div>
+                    <div class="detail">Saddleback College campus.</div>
+                </div>
+                <div class="fact reveal">
+                    <div class="key">TIME COMMITMENT</div>
+                    <div class="val">5–20 hrs/wk</div>
+                    <div class="detail">You get what you give.</div>
+                </div>
+                <div class="fact reveal">
+                    <div class="key">COST</div>
+                    <div class="val">$0</div>
+                    <div class="detail">Corporate sponsors + foundation funding.</div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- S9 — Logistics -->
-<section class="slide s-logistics has-hero" data-slide="7">
-    <div class="hero-bg"><img src="rover-mdrs.jpg" alt="Rover at Mars Desert Research Station in Utah" /></div>
-    <span class="slide-tag">LOGISTICS</span>
-    <span class="slide-index">08 / 09</span>
-    <h2 class="reveal">Here's what it looks like.</h2>
-    <div class="facts">
-        <div class="fact reveal">
-            <div class="key">WHEN</div>
-            <div class="val">Sundays</div>
-            <div class="detail">Weekly meetings, year-round — including summer.</div>
-        </div>
-        <div class="fact reveal">
-            <div class="key">WHERE</div>
-            <div class="val">Science Building</div>
-            <div class="detail">Saddleback College campus.</div>
-        </div>
-        <div class="fact reveal">
-            <div class="key">TIME COMMITMENT</div>
-            <div class="val">5–20 hrs/wk</div>
-            <div class="detail">You get what you give.</div>
-        </div>
-        <div class="fact reveal">
-            <div class="key">COST</div>
-            <div class="val">$0</div>
-            <div class="detail">Corporate sponsors + foundation funding.</div>
-        </div>
-    </div>
-</section>
-
-<!-- S10 — The ask (TWO QRs) -->
-<section class="slide s-ask" data-slide="8">
-    <span class="slide-tag">APPLY TODAY</span>
-    <span class="slide-index">09 / 09</span>
+<!-- S6 — The ask (TWO QRs) -->
+<section class="slide s-ask" data-slide="5">
+    <span class="slide-index">06 / 06</span>
     <img class="apply-pointer" src="jacob-pointing.png" alt="Team member pointing at the apply QR codes" />
     <h1 class="reveal">Applications live in Discord.</h1>
 
@@ -1223,6 +1072,146 @@ body[data-slide="8"] .floating-qr { display: none; }
 </main>
 
 <script>
+/* =========================================
+   Rover video clip library
+   Timestamps from youtu.be/36oEEap9BaM
+   Reusable across slides.
+   ========================================= */
+const ROVER_VIDEO_ID = '36oEEap9BaM';
+const ROVER_CLIPS = {
+    harshDriving:     { start: 25,  end: 30  },  // 0:25–0:30 drive / suspension
+    arm5kg:           { start: 53,  end: 56  },  // 0:53–0:56 arm lifting 5kg
+    armCad:           { start: 65,  end: 83  },  // 1:05–1:23 SolidWorks arm CAD
+    armIK:            { start: 103, end: 109 },  // 1:43–1:49 inverse kinematics
+    armAltium:        { start: 116, end: 120 },  // 1:56–2:00 Altium arm PDB
+    longRange:        { start: 143, end: 150 },  // 2:23–2:30 long range drive
+    scienceInMotion:  { start: 185, end: 219 },  // 3:05–3:39 science system
+    armMissionTasks:  { start: 264, end: 276 }   // 4:24–4:36 arm flipping switches
+};
+
+/* Players to instantiate — if an ID isn't on the page, it's skipped */
+const YT_PLAYERS = [
+    { id: 'yt-cell-1',       clip: ROVER_CLIPS.harshDriving    },
+    { id: 'yt-cell-2',       clip: ROVER_CLIPS.arm5kg          },
+    { id: 'yt-cell-3',       clip: ROVER_CLIPS.scienceInMotion },
+    { id: 'yt-cell-4',       clip: ROVER_CLIPS.longRange       },
+    { id: 'yt-teach-cad',    clip: ROVER_CLIPS.armCad          },
+    { id: 'yt-teach-altium', clip: ROVER_CLIPS.armAltium       }
+];
+
+/* Build iframes directly so we can set allow="autoplay" (Chrome blocks
+   autoplay otherwise). Then attach YT.Player to each for watchdog loops. */
+function buildRoverIframes() {
+    YT_PLAYERS.forEach(cfg => {
+        const placeholder = document.getElementById(cfg.id);
+        if (!placeholder || placeholder.tagName === 'IFRAME') return;
+        const iframe = document.createElement('iframe');
+        iframe.id = cfg.id;
+        const params = new URLSearchParams({
+            autoplay: '1', mute: '1', controls: '0', disablekb: '1',
+            modestbranding: '1', playsinline: '1', rel: '0',
+            iv_load_policy: '3', fs: '0', enablejsapi: '1',
+            cc_load_policy: '0', hl: 'en',
+            start: String(cfg.clip.start),
+            origin: window.location.origin
+        });
+        iframe.src = `https://www.youtube-nocookie.com/embed/${ROVER_VIDEO_ID}?${params.toString()}`;
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allowfullscreen', '');
+        placeholder.replaceWith(iframe);
+    });
+}
+
+buildRoverIframes();
+
+/* Inject the YouTube IFrame API */
+(function() {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(tag, firstScript);
+})();
+
+const _ytInstances = [];
+
+/* YouTube captions can be forced on by user pref — try every known API to kill them */
+function killCaptions(p) {
+    const kill = () => {
+        try { p.unloadModule('captions'); } catch (_) {}
+        try { p.unloadModule('cc'); } catch (_) {}
+        try { p.setOption('captions', 'track', {}); } catch (_) {}
+        try { p.setOption('cc', 'track', {}); } catch (_) {}
+    };
+    kill();
+    /* Retry — the modules sometimes reload after playback starts */
+    [500, 1500, 3000, 6000].forEach(ms => setTimeout(kill, ms));
+}
+
+function _tryPlayAll() {
+    _ytInstances.forEach(({ player, cfg }) => {
+        try {
+            player.mute();
+            const t = player.getCurrentTime();
+            if (t < cfg.clip.start - 0.5 || t >= cfg.clip.end) {
+                player.seekTo(cfg.clip.start, true);
+            }
+            player.playVideo();
+        } catch (err) { /* not ready */ }
+    });
+}
+
+/* Chrome blocks iframe autoplay until the user makes a gesture. Kick off
+   playback on the first interaction anywhere on the page. */
+['pointerdown', 'keydown', 'touchstart', 'wheel', 'scroll'].forEach(evt => {
+    window.addEventListener(evt, _tryPlayAll, { capture: true, passive: true });
+});
+
+window.onYouTubeIframeAPIReady = function() {
+    YT_PLAYERS.forEach(cfg => {
+        const iframe = document.getElementById(cfg.id);
+        if (!iframe || iframe.tagName !== 'IFRAME') return;
+        const player = new YT.Player(iframe, {
+            events: {
+                onReady: (e) => {
+                    try {
+                        e.target.mute();
+                        killCaptions(e.target);
+                        e.target.seekTo(cfg.clip.start, true);
+                        e.target.playVideo();
+                    } catch (err) { /* noop */ }
+                },
+                onStateChange: (e) => {
+                    /* If YouTube pauses us (end=reached, or autoplay blocked), resume */
+                    if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+                        try {
+                            e.target.seekTo(cfg.clip.start, true);
+                            e.target.playVideo();
+                        } catch (err) { /* noop */ }
+                    }
+                }
+            }
+        });
+        _ytInstances.push({ player, cfg });
+        let hasStarted = false;
+        /* Watchdog: seek back to start when playback passes end. */
+        setInterval(() => {
+            try {
+                if (typeof player.getCurrentTime !== 'function') return;
+                const t = player.getCurrentTime();
+                if (!hasStarted) {
+                    if (t >= cfg.clip.start) hasStarted = true;
+                    return;
+                }
+                if (t >= cfg.clip.end) player.seekTo(cfg.clip.start, true);
+            } catch (err) { /* not ready */ }
+        }, 300);
+    });
+};
+
+/* =========================================
+   Slide navigation (unchanged behavior)
+   ========================================= */
 (function() {
     'use strict';
 
@@ -1232,18 +1221,14 @@ body[data-slide="8"] .floating-qr { display: none; }
     const totalSlides = slides.length;
     document.body.dataset.slide = '0';
 
-    // Reveal animations via IntersectionObserver
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('visible');
         });
     }, { threshold: 0.15 });
 
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
-    // Track which slide is active
     const slideObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
@@ -1258,9 +1243,7 @@ body[data-slide="8"] .floating-qr { display: none; }
     function setActive(idx) {
         currentSlide = idx;
         document.body.dataset.slide = idx;
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === idx);
-        });
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
     }
 
     function goToSlide(idx) {
@@ -1268,12 +1251,9 @@ body[data-slide="8"] .floating-qr { display: none; }
         slides[idx].scrollIntoView({ behavior: 'smooth' });
     }
 
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => goToSlide(i));
-    });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
 
     document.addEventListener('keydown', (e) => {
-        // Number keys 1–9 jump directly to that slide (1-indexed)
         if (e.key >= '1' && e.key <= '9') {
             const target = parseInt(e.key, 10) - 1;
             if (target < totalSlides) {
@@ -1282,7 +1262,6 @@ body[data-slide="8"] .floating-qr { display: none; }
                 return;
             }
         }
-
         switch (e.key) {
             case 'ArrowRight':
             case 'ArrowDown':
