@@ -794,6 +794,9 @@ function open_lightbox_gallery_photo_slider(slide) {
    instead of the original two-column split, so individual logos flow 3-per-row. */
 .stk-f33ae39 > .stk-row{flex-wrap:wrap;}
 .stk-f33ae39 .stk-3a733f6, .stk-f33ae39 .stk-df086d7{flex:1 1 100% !important;max-width:100% !important;}
+/* Neutralize the left column's asymmetric right padding (Stackable sets 100px)
+   so the heading/intro center on the same axis as the logo grid. */
+.stk-f33ae39 .stk-3a733f6.stk-3a733f6{padding-right:0 !important;}
 .stk-f33ae39 .stk-3a733f6 .stk-block-heading__text,
 .stk-f33ae39 .stk-3a733f6 .stk-block-text__text{text-align:center;}
 .scr-sponsors{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:46px 56px;max-width:1000px;margin:0 auto;padding:10px 20px;}
