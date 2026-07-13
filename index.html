@@ -787,7 +787,31 @@ function open_lightbox_gallery_photo_slider(slide) {
 
 
 <div class="wp-block-stackable-column stk-block-column stk-column stk-block stk-df086d7" data-v="4" data-block-id="df086d7"><div class="stk-column-wrapper stk-block-column__content stk-container stk-df086d7-container stk--no-background stk--no-padding"><div class="stk-block-content stk-inner-blocks stk-df086d7-inner-blocks">
-<div class="wp-block-stackable-image stk-block-image stk-block stk-4575333" data-block-id="4575333"><figure class="stk-img-wrapper stk-image--shape-stretch"><img decoding="async" loading="lazy" class="stk-img wp-image-1264" src="./wp-content/uploads/2023/12/sponsors-v3.png" width="2254" height="1274" srcset="./wp-content/uploads/2023/12/sponsors-v3.png 2254w, ./wp-content/uploads/2023/12/sponsors-v3-300x170.png 300w, ./wp-content/uploads/2023/12/sponsors-v3-1024x579.png 1024w, ./wp-content/uploads/2023/12/sponsors-v3-768x434.png 768w, ./wp-content/uploads/2023/12/sponsors-v3-1536x868.png 1536w, ./wp-content/uploads/2023/12/sponsors-v3-2048x1158.png 2048w" sizes="(max-width: 2254px) 100vw, 2254px"></figure></div>
+<style>
+/* Sponsors: individual logos (replaces baked composite). Add/remove a sponsor
+   by editing the <img> list below and dropping a PNG in wp-content/uploads/sponsors/. */
+/* Stack the sponsors section full-width (heading/intro above a centered logo row)
+   instead of the original two-column split, so individual logos flow 3-per-row. */
+.stk-f33ae39 > .stk-row{flex-wrap:wrap;}
+.stk-f33ae39 .stk-3a733f6, .stk-f33ae39 .stk-df086d7{flex:1 1 100% !important;max-width:100% !important;}
+.stk-f33ae39 .stk-3a733f6 .stk-block-heading__text,
+.stk-f33ae39 .stk-3a733f6 .stk-block-text__text{text-align:center;}
+.scr-sponsors{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:46px 56px;max-width:1000px;margin:0 auto;padding:10px 20px;}
+.scr-sponsors img{max-height:82px;max-width:230px;width:auto;height:auto;object-fit:contain;flex:0 0 auto;}
+.scr-footer-sponsors{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:22px 40px;padding:6px 0;}
+.scr-footer-sponsors img{max-height:48px;max-width:150px;width:auto;height:auto;object-fit:contain;flex:0 0 auto;}
+@media (max-width:782px){.scr-sponsors{gap:32px 40px;}.scr-sponsors img{max-height:60px;max-width:170px;}.scr-footer-sponsors img{max-height:38px;max-width:120px;}}
+@media (max-width:480px){.scr-sponsors img{max-height:50px;max-width:130px;}}
+</style>
+<div class="scr-sponsors">
+<img loading="lazy" src="./wp-content/uploads/sponsors/irvine.png" alt="Irvine Electro-Optics">
+<img loading="lazy" src="./wp-content/uploads/sponsors/saddleback.png" alt="Saddleback College">
+<img loading="lazy" src="./wp-content/uploads/sponsors/protospace.png" alt="Protospace MFG">
+<img loading="lazy" src="./wp-content/uploads/sponsors/dassault.png" alt="Dassault Syst&egrave;mes">
+<img loading="lazy" src="./wp-content/uploads/sponsors/altium.png" alt="Altium">
+<img loading="lazy" src="./wp-content/uploads/sponsors/bild.png" alt="Bild">
+<img loading="lazy" src="./wp-content/uploads/sponsors/sendcutsend.png" alt="SendCutSend">
+</div>
 </div></div></div>
 </div></div>
 
@@ -859,7 +883,15 @@ function open_lightbox_gallery_photo_slider(slide) {
 		</div></div>
 </div></div>
 <div data-row="bottom"><div class="ct-container" data-columns-divider="md:sm"><div data-column="widget-area-5"><div class="ct-widget widget_block" id="block-20">
-<div class="wp-block-stackable-image stk-block-image stk-block stk-e07aea8" data-block-id="e07aea8"><figure class="stk-img-wrapper stk-image--shape-stretch"><img decoding="async" loading="lazy" class="stk-img wp-image-1260" src="./wp-content/uploads/2023/12/footer-sponsors-v3.png" width="6007" height="475" srcset="./wp-content/uploads/2023/12/footer-sponsors-v3.png 6757w, ./wp-content/uploads/2023/12/footer-sponsors-v3-300x21.png 300w, ./wp-content/uploads/2023/12/footer-sponsors-v3-1024x72.png 1024w, ./wp-content/uploads/2023/12/footer-sponsors-v3-768x54.png 768w, ./wp-content/uploads/2023/12/footer-sponsors-v3-1536x108.png 1536w, ./wp-content/uploads/2023/12/Footer-Sponsors-v3-2048x144.png 2048w" sizes="(max-width: 6757px) 100vw, 6757px"></figure></div>
+<div class="scr-footer-sponsors">
+<img loading="lazy" src="./wp-content/uploads/sponsors/irvine.png" alt="Irvine Electro-Optics">
+<img loading="lazy" src="./wp-content/uploads/sponsors/saddleback.png" alt="Saddleback College">
+<img loading="lazy" src="./wp-content/uploads/sponsors/protospace.png" alt="Protospace MFG">
+<img loading="lazy" src="./wp-content/uploads/sponsors/dassault.png" alt="Dassault Syst&egrave;mes">
+<img loading="lazy" src="./wp-content/uploads/sponsors/altium.png" alt="Altium">
+<img loading="lazy" src="./wp-content/uploads/sponsors/bild.png" alt="Bild">
+<img loading="lazy" src="./wp-content/uploads/sponsors/sendcutsend.png" alt="SendCutSend">
+</div>
 </div></div></div></div></footer>
 </div>
 
