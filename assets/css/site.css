@@ -58,22 +58,42 @@ Tags: blog, e-commerce, wide-blocks, block-styles, grid-layout, one-column, two-
 	font-display: swap;
 }
 
-/* Photo strip (replaces owl-carousel "Slide Anything" widget) */
+/* Prevent the 100vw full-bleed strip below from adding a page-level
+   horizontal scrollbar (100vw includes the vertical scrollbar's own
+   width, so it slightly exceeds the visible viewport). */
+html {
+	overflow-x: hidden;
+}
+
+/* Photo strip (replaces owl-carousel "Slide Anything" widget).
+   Full-bleed: breaks out of the centered content column to span the
+   viewport edge-to-edge, regardless of how deeply it's nested. */
 .photo-strip {
 	display: flex;
 	gap: 4px;
 	overflow-x: auto;
-	scroll-snap-type: x proximity;
-	width: 150%;
-	position: relative;
-	left: -25%;
+	overflow-y: hidden;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	width: 100vw;
+	max-width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	/* Hide the native scrollbar; scroll-snap + touch/trackpad drag remains. */
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+.photo-strip::-webkit-scrollbar {
+	display: none;
 }
 .photo-strip__item {
 	scroll-snap-align: start;
 	flex: 0 0 auto;
-	width: 260px;
-	height: 340px;
+	width: 22vw;
+	height: 46vw;
+	max-height: 460px;
 	background-size: cover;
+	background-position: center;
 	background-repeat: no-repeat;
 	border: none;
 	padding: 0;
@@ -92,11 +112,10 @@ Tags: blog, e-commerce, wide-blocks, block-styles, grid-layout, one-column, two-
 	background: rgba(0, 0, 0, 0.25);
 }
 @media (max-width: 999.98px) {
-	.photo-strip { width: 130%; left: -15%; }
+	.photo-strip__item { width: 45vw; height: 55vw; }
 }
 @media (max-width: 689.98px) {
-	.photo-strip { width: 100%; left: 0; }
-	.photo-strip__item { width: 200px; height: 260px; }
+	.photo-strip__item { width: 78vw; height: 70vw; }
 }
 
 /* Lightbox (replaces lightGallery) */
