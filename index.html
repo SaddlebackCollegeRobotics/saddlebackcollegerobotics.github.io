@@ -258,6 +258,21 @@ h2 {
 	<button type="button" class="lightbox__next" aria-label="Next photo">&#8250;</button>
 </div>
 
+<div class="scr-featured" id="featured">
+	<!-- The logo repeats the heading link, so it's hidden from screen readers and
+	     the tab order rather than exposed as a second, unlabeled link. -->
+	<a class="scr-featured__logo-link" href="https://opensauce.com/" target="_blank" rel="noreferrer noopener" aria-hidden="true" tabindex="-1"><img class="scr-featured__logo" src="./assets/uploads/opensauce-logo-white.svg" alt=""></a>
+	<h2><a class="scr-featured__title-link" href="https://opensauce.com/" target="_blank" rel="noreferrer noopener">Featured at Open Sauce</a></h2>
+	<p>Our rover made it onto William Osman&rsquo;s channel, with <a href="https://www.youtube.com/@TheBackyardScientist" target="_blank" rel="noreferrer noopener">The Backyard Scientist</a> interviewing the team. Our segment is looping below.</p>
+	<!-- start= opens on our clip (12:32); site.js watches the clock and seeks
+	     back at 12:54 to loop it. Deliberately no loop=/playlist= params:
+	     YouTube treats playlist= as a real playlist and then ignores start=. -->
+	<div class="scr-featured__frame">
+		<iframe id="scr-featured-clip" loading="lazy" title="Saddleback College Robotics interviewed by The Backyard Scientist on William Osman&rsquo;s channel" src="https://www.youtube.com/embed/5Y21THNFZWg?start=752&amp;mute=1&amp;playsinline=1&amp;rel=0&amp;enablejsapi=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	</div>
+	<p class="scr-featured__caption"><a href="https://youtu.be/5Y21THNFZWg?t=752" target="_blank" rel="noreferrer noopener">Watch the full video on YouTube</a></p>
+</div>
+
 <div class="wp-block-stackable-columns alignwide stk-block-columns stk-block stk-a11e2e3" data-block-id="a11e2e3"><div class="stk-row stk-inner-blocks stk-block-content stk-content-align stk-a11e2e3-column alignwide">
 <div class="wp-block-stackable-column stk-block-column stk-column stk-block stk-07a65bb" data-v="4" data-block-id="07a65bb"><div class="stk-column-wrapper stk-block-column__content stk-container stk-07a65bb-container stk--no-background stk--no-padding"><div class="stk-block-content stk-inner-blocks stk-07a65bb-inner-blocks"></div></div></div>
 </div></div>

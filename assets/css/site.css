@@ -153,3 +153,62 @@ html {
 .lightbox__close { top: 20px; right: 20px; }
 .lightbox__prev { left: 20px; top: 50%; transform: translateY(-50%); }
 .lightbox__next { right: 20px; top: 50%; transform: translateY(-50%); }
+
+/* "Featured on" video embed. The iframe in index.html is deep-linked to our
+   segment with YouTube's start/end embed params, so it plays just that clip. */
+.scr-featured {
+	max-width: 880px;
+	margin: 0 auto;
+	padding: 40px 20px;
+	text-align: center;
+}
+.scr-featured__frame {
+	aspect-ratio: 16 / 9;
+	margin-top: 24px;
+	background: #000;
+}
+.scr-featured__frame iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+/* Open Sauce logo, stacked above the heading. It's a tall portrait mark with a
+   wordmark baked in, so it needs its own line to stay legible. */
+.scr-featured__logo {
+	display: block;
+	height: 96px;
+	width: auto;
+	margin: 0 auto;
+}
+/* Even optical spacing logo -> title -> subtitle. The margins differ because
+   the headline's line-height adds ~7.5px of half-leading above its glyphs that
+   the logo (a block image) doesn't have, so equal margins would read uneven. */
+.scr-featured h2 {
+	margin-top: 21px;
+	margin-bottom: 16px;
+}
+@media (max-width: 782px) {
+	.scr-featured__logo { height: 72px; }
+}
+/* fit-content so the click target is the logo itself, not the full-width row. */
+.scr-featured__logo-link {
+	display: block;
+	width: fit-content;
+	margin: 0 auto;
+}
+.scr-featured__logo-link:hover .scr-featured__logo {
+	opacity: 0.8;
+}
+/* Keep the heading looking like a heading; reveal the link on interaction. */
+.scr-featured__title-link {
+	color: inherit;
+	text-decoration: none;
+}
+.scr-featured__title-link:hover,
+.scr-featured__title-link:focus-visible {
+	text-decoration: underline;
+}
+.scr-featured__caption {
+	margin-top: 12px;
+}
