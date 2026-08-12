@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brand Assets — SC Robotics</title>
+<meta name="description" content="Logo files and brand colors for Saddleback College Robotics." />
+<link rel="icon" href="../assets/uploads/2022/08/favicon2.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="../assets/uploads/2022/08/favicon2.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --red:    #E40C13;
+    --orange: #FC3D21;
+    --ink:    #1a1a1a;
+    --ink-2:  #1f1f1f;
+    --ink-3:  #292929;
+    --bone:   #ffffff;
+    --bone-2: #dfdad1;
+    --muted:  #a5a5a5;
+    --line:   rgba(255,255,255,0.12);
+    --pad:    clamp(1.25rem, 5vw, 4rem);
+}
+
+body {
+    font-family: 'Roboto Mono', ui-monospace, monospace;
+    background: var(--ink);
+    color: var(--bone-2);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 {
+    font-family: 'Lexend Deca', sans-serif;
+    color: var(--bone);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-weight: 800;
+}
+
+a { color: var(--orange); }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: var(--pad); }
+
+header { padding: clamp(3rem, 8vh, 5rem) 0 clamp(2rem, 4vh, 3rem); }
+.eyebrow {
+    color: var(--orange); font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 0.9rem;
+}
+header h1 { font-size: clamp(2rem, 5.5vw, 3.5rem); font-weight: 900; }
+header p { margin-top: 1rem; max-width: 60ch; color: var(--muted); font-size: 0.9rem; }
+
+section { padding-bottom: clamp(3rem, 7vh, 4.5rem); }
+h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 1.5rem; }
+
+/* logos */
+.logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+.logo-panel { border: 1px solid var(--line); overflow: hidden; }
+.logo-stage { display: grid; place-items: center; padding: clamp(2rem, 5vw, 3rem); min-height: 180px; }
+.stage-dark  { background: var(--ink-2); }
+.stage-light { background: var(--bone); }
+.logo-stage img { width: 100%; max-width: 250px; height: auto; display: block; }
+.logo-meta { padding: 1rem 1.25rem; background: var(--ink-3); border-top: 1px solid var(--line); }
+.logo-meta strong {
+    color: var(--bone); display: block; font-size: 0.85rem;
+    font-family: 'Lexend Deca', sans-serif; font-weight: 700;
+}
+.logo-meta .sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
+.logo-meta a {
+    display: inline-block; margin-top: 0.75rem; font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; text-decoration: none;
+}
+.logo-meta a:hover { text-decoration: underline; }
+
+/* colors */
+.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
+.sw {
+    border: 1px solid var(--line); background: var(--ink-2);
+    cursor: pointer; text-align: left; width: 100%;
+    font-family: inherit; color: inherit; padding: 0;
+}
+.sw:hover { border-color: var(--red); }
+.sw:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.sw-chip { height: 88px; border-bottom: 1px solid var(--line); }
+.sw-body { padding: 0.85rem 1rem; }
+.sw-name { font-family: 'Lexend Deca', sans-serif; font-weight: 700; color: var(--bone); font-size: 0.85rem; }
+.sw-hex  { font-size: 0.8rem; color: var(--orange); margin-top: 0.35rem; letter-spacing: 0.04em; }
+.sw-rgb  { font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; }
+.copied  { color: #4fbf60 !important; }
+
+.hint { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.25rem; }
+
+footer { padding: 2.5rem 0 3.5rem; border-top: 1px solid var(--line); }
+footer p { font-size: 0.78rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Saddleback College Robotics</div>
+    <h1>Brand Assets</h1>
+    <p>Logo files and colors. Need vector artwork or print-resolution files? Email
+      <a href="mailto:saddlebackroverteam@gmail.com">saddlebackroverteam@gmail.com</a>.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Logo</h2>
+    <div class="logo-grid">
+      <div class="logo-panel">
+        <div class="logo-stage stage-dark">
+          <img src="../assets/sc-robotics-logo-light-text.png" alt="SC Robotics logo with white wordmark on a dark background" />
+        </div>
+        <div class="logo-meta">
+          <strong>Light text</strong>
+          <div class="sub">For dark backgrounds. PNG, transparent, 1774 &times; 792.</div>
+          <a href="../assets/sc-robotics-logo-light-text.png" download>Download</a>
+        </div>
+      </div>
+
+      <div class="logo-panel">
+        <div class="logo-stage stage-light">
+          <img src="../assets/sc-robotics-logo-dark-text.png" alt="SC Robotics logo with dark wordmark on a white background" />
+        </div>
+        <div class="logo-meta">
+          <strong>Dark text</strong>
+          <div class="sub">For light backgrounds. PNG, transparent, 1774 &times; 792.</div>
+          <a href="../assets/sc-robotics-logo-dark-text.png" download>Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Colors</h2>
+    <p class="hint">Click a swatch to copy its hex.</p>
+    <div class="swatches">
+      <button class="sw" data-copy="#E40C13">
+        <div class="sw-chip" style="background:#E40C13"></div>
+        <div class="sw-body">
+          <div class="sw-name">SCR Red</div>
+          <div class="sw-hex">#E40C13</div>
+          <div class="sw-rgb">rgb(228, 12, 19)</div>
+        </div>
+      </button>
+      <button class="sw" data-copy="#FC3D21">
+        <div class="sw-chip" style="background:#FC3D21"></div>
+        <div class="sw-body">
+          <div class="sw-name">NASA Orange</div>
+          <div class="sw-hex">#FC3D21</div>
+          <div class="sw-rgb">rgb(252, 61, 33)</div>
+        </div>
+      </button>
+      <button class="sw" data-copy="#1a1a1a">
+        <div class="sw-chip" style="background:#1a1a1a"></div>
+        <div class="sw-body">
+          <div class="sw-name">Ink</div>
+          <div class="sw-hex">#1A1A1A</div>
+          <div class="sw-rgb">rgb(26, 26, 26)</div>
+        </div>
+      </button>
+      <button class="sw" data-copy="#ffffff">
+        <div class="sw-chip" style="background:#ffffff"></div>
+        <div class="sw-body">
+          <div class="sw-name">White</div>
+          <div class="sw-hex">#FFFFFF</div>
+          <div class="sw-rgb">rgb(255, 255, 255)</div>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Saddleback College Robotics ·
+      <a href="../index.html">Main site</a> ·
+      <a href="mailto:saddlebackroverteam@gmail.com">saddlebackroverteam@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.sw').forEach(function (sw) {
+    sw.addEventListener('click', function () {
+        var hex = sw.getAttribute('data-copy');
+        var label = sw.querySelector('.sw-hex');
+        var original = label.textContent;
+
+        function done() {
+            label.textContent = 'Copied';
+            label.classList.add('copied');
+            setTimeout(function () {
+                label.textContent = original;
+                label.classList.remove('copied');
+            }, 1100);
+        }
+
+        function fallback() {
+            var ta = document.createElement('textarea');
+            ta.value = hex;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'absolute';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); done(); } catch (e) {}
+            document.body.removeChild(ta);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(hex).then(done, fallback);
+        } else {
+            fallback();
+        }
+    });
+});
+</script>
+
+</body>
+</html>
