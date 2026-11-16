@@ -26,7 +26,7 @@ html { scroll-padding-top: 84px; }
 .scr-header__logo { display: flex; flex: 0 0 auto; align-items: center; }
 .scr-header__logo img { display: block; width: auto; height: 40px; max-width: none; }
 .scr-header__links { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 1.8vw, 24px); margin-left: auto; }
-.scr-header a, .scr-header summary {
+.scr-header a {
   color: #eee;
   font-size: 12px;
   font-weight: 600;
@@ -34,34 +34,13 @@ html { scroll-padding-top: 84px; }
   text-decoration: none;
   white-space: nowrap;
 }
-.scr-header__links a, .scr-header__menu-panel a { padding: 8px 0; }
+.scr-header__links a { padding: 8px 0; }
 .scr-header a:hover, .scr-header a[aria-current="page"] { color: #fff; }
 .scr-header a[aria-current="page"] { text-decoration: underline; text-decoration-color: #e40c13; text-underline-offset: 7px; text-decoration-thickness: 2px; }
-.scr-header a:focus-visible, .scr-header summary:focus-visible { outline: 2px solid #ff7773; outline-offset: 4px; }
-.scr-header a.scr-header__join { flex: 0 0 auto; padding: 10px 14px; color: #fff; background: #4854cc; }
+.scr-header a:focus-visible { outline: 2px solid #ff7773; outline-offset: 4px; }
+.scr-header a.scr-header__join { display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; padding: 10px 14px; color: #fff; background: #4854cc; }
+.scr-header__join img { display: block; width: 16px; height: 16px; }
 .scr-header a.scr-header__join:hover { background: #3c49bd; }
-.scr-header__menu { display: none; margin-left: auto; }
-.scr-header__menu summary { display: flex; align-items: center; gap: 6px; cursor: pointer; list-style: none; padding: 10px 4px; }
-.scr-header__menu summary::-webkit-details-marker { display: none; }
-.scr-header__menu[open] summary span { transform: rotate(180deg); }
-.scr-header__menu-panel {
-  position: absolute;
-  top: 100%;
-  right: clamp(20px, 3vw, 30px);
-  display: flex;
-  flex-direction: column;
-  width: min(240px, calc(100vw - 40px));
-  padding: 8px 16px;
-  background: #242424;
-  border: 1px solid rgba(255, 255, 255, .16);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
-}
-.scr-header__menu-panel a { padding: 12px 4px; }
-
-@media (max-width: 850px) {
-  .scr-header__links { display: none; }
-  .scr-header__menu { display: block; }
-}
 @media (max-width: 380px) {
   .scr-header__inner { gap: 12px; }
   .scr-header__logo img { height: 34px; }
