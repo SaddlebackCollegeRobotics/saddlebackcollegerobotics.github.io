@@ -9,25 +9,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./roster.css?v=2">
+  <link rel="stylesheet" href="./roster.css?v=3">
   <link rel="stylesheet" href="../assets/css/header.css?v=2">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <svg aria-hidden="true" focusable="false" width="0" height="0" class="photo-filters">
     <defs>
+      <filter id="lift-shadows-soft" color-interpolation-filters="sRGB">
+        <feComponentTransfer>
+          <feFuncR type="gamma" exponent="0.9"></feFuncR>
+          <feFuncG type="gamma" exponent="0.9"></feFuncG>
+          <feFuncB type="gamma" exponent="0.9"></feFuncB>
+        </feComponentTransfer>
+      </filter>
       <filter id="lift-shadows" color-interpolation-filters="sRGB">
         <feComponentTransfer>
-          <feFuncR type="gamma" exponent="0.78"></feFuncR>
-          <feFuncG type="gamma" exponent="0.78"></feFuncG>
-          <feFuncB type="gamma" exponent="0.78"></feFuncB>
+          <feFuncR type="gamma" exponent="0.72"></feFuncR>
+          <feFuncG type="gamma" exponent="0.72"></feFuncG>
+          <feFuncB type="gamma" exponent="0.72"></feFuncB>
         </feComponentTransfer>
       </filter>
       <filter id="lift-shadows-more" color-interpolation-filters="sRGB">
         <feComponentTransfer>
-          <feFuncR type="gamma" exponent="0.68"></feFuncR>
-          <feFuncG type="gamma" exponent="0.68"></feFuncG>
-          <feFuncB type="gamma" exponent="0.68"></feFuncB>
+          <feFuncR type="gamma" exponent="0.62"></feFuncR>
+          <feFuncG type="gamma" exponent="0.62"></feFuncG>
+          <feFuncB type="gamma" exponent="0.62"></feFuncB>
         </feComponentTransfer>
       </filter>
     </defs>
