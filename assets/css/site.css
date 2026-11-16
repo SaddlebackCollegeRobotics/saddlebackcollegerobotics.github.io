@@ -44,16 +44,12 @@ Tags: blog, e-commerce, wide-blocks, block-styles, grid-layout, one-column, two-
 .scr-hero-logos {
 	display: flex;
 	align-items: center;
-	gap: clamp(14px, 2vw, 22px);
 	margin-bottom: 10px;
 }
 .scr-hero-logos .stk-724d770 { flex: 0 0 175px; margin: 0 !important; }
-.scr-hero-logos__urc { display: block; width: clamp(60px, 6vw, 78px); }
-.scr-hero-logos__urc svg { display: block; width: 100%; height: auto; }
 @media (max-width: 767px) {
-	.scr-hero-logos { justify-content: center; gap: 14px; }
+	.scr-hero-logos { justify-content: center; }
 	.scr-hero-logos .stk-724d770 { flex-basis: 110px; }
-	.scr-hero-logos__urc { width: 56px; }
 }
 
 @font-face {
