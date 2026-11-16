@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./roster.css">
+  <link rel="stylesheet" href="../assets/css/header.css?v=1">
+  <script src="../assets/js/header.js?v=1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -32,16 +34,31 @@
     </defs>
   </svg>
 
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="site-logo" href="../" aria-label="Saddleback College Robotics home">
-        <img src="../assets/sc-robotics-logo-light-text.png" alt="" width="1774" height="792">
+  <header class="scr-header">
+    <div class="scr-header__inner">
+      <a class="scr-header__logo" href="../" aria-label="Saddleback College Robotics home">
+        <img src="../assets/uploads/2022/06/RedWhite_SC_Robotics-300x134.png" alt="" width="300" height="134">
       </a>
-      <nav aria-label="Main navigation">
+      <nav class="scr-header__links" aria-label="Site pages">
         <a href="../">Home</a>
-        <a href="./" aria-current="page">Team</a>
-        <a class="nav-join" href="https://discord.gg/USzmfYwAUa" target="_blank" rel="noopener noreferrer">Join us <span aria-hidden="true">↗</span></a>
+        <a href="../#about">About</a>
+        <a href="./" aria-current="page">Roster</a>
+        <a href="../#about-competition">Competition</a>
+        <a href="../recruiting/">Recruiting</a>
+        <a href="../brand/">Brand</a>
       </nav>
+      <details class="scr-header__menu">
+        <summary>Menu <span aria-hidden="true">▾</span></summary>
+        <nav class="scr-header__menu-panel" aria-label="Site pages">
+          <a href="../">Home</a>
+          <a href="../#about">About</a>
+          <a href="./" aria-current="page">Roster</a>
+          <a href="../#about-competition">Competition</a>
+          <a href="../recruiting/">Recruiting</a>
+          <a href="../brand/">Brand</a>
+        </nav>
+      </details>
+      <a href="https://discord.gg/USzmfYwAUa" target="_blank" rel="noopener noreferrer" class="scr-header__join">Join Discord</a>
     </div>
   </header>
 

@@ -1,16 +1,6 @@
 document.body.classList.add('stk--anim-init');
 
 (function () {
-	var header = document.getElementById('sticky-header');
-	var hero = document.querySelector('[data-role="hero-section"]');
-	if (header && hero) {
-		new IntersectionObserver(function (entries) {
-			header.classList.toggle('is-visible', !entries[0].isIntersecting);
-		}, { threshold: 0 }).observe(hero);
-	}
-})();
-
-(function () {
 	var backToTop = document.querySelector('.ct-back-to-top');
 	if (!backToTop) return;
 	window.addEventListener('scroll', function () {
@@ -24,6 +14,9 @@ document.body.classList.add('stk--anim-init');
 	if (!strip.length || !lightbox) return;
 
 	var lbImg = lightbox.querySelector('img');
+	var closeButton = lightbox.querySelector('.lightbox__close');
+	var nextButton = lightbox.querySelector('.lightbox__next');
+	var opener = null;
 	var images = Array.prototype.map.call(strip, function (el) {
 		return el.style.backgroundImage.slice(5, -2);
 	});
@@ -34,20 +27,23 @@ document.body.classList.add('stk--anim-init');
 		lbImg.src = images[current];
 	}
 	function open(index) {
+		opener = strip[index];
 		show(index);
 		lightbox.classList.add('is-open');
+		closeButton.focus();
 	}
 	function close() {
 		lightbox.classList.remove('is-open');
 		lbImg.src = '';
+		if (opener) opener.focus();
 	}
 
 	strip.forEach(function (el, index) {
 		el.addEventListener('click', function () { open(index); });
 	});
-	lightbox.querySelector('.lightbox__close').addEventListener('click', close);
+	closeButton.addEventListener('click', close);
 	lightbox.querySelector('.lightbox__prev').addEventListener('click', function () { show(current - 1); });
-	lightbox.querySelector('.lightbox__next').addEventListener('click', function () { show(current + 1); });
+	nextButton.addEventListener('click', function () { show(current + 1); });
 	lightbox.addEventListener('click', function (e) {
 		if (e.target === lightbox) close();
 	});
@@ -56,6 +52,13 @@ document.body.classList.add('stk--anim-init');
 		if (e.key === 'Escape') close();
 		if (e.key === 'ArrowLeft') show(current - 1);
 		if (e.key === 'ArrowRight') show(current + 1);
+		if (e.key === 'Tab' && e.shiftKey && document.activeElement === closeButton) {
+			e.preventDefault();
+			nextButton.focus();
+		} else if (e.key === 'Tab' && !e.shiftKey && document.activeElement === nextButton) {
+			e.preventDefault();
+			closeButton.focus();
+		}
 	});
 })();
 

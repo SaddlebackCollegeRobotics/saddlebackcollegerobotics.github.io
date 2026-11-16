@@ -43,23 +43,15 @@ a:focus-visible { outline: 3px solid #fc3d21; outline-offset: 4px; }
 .skip-link:focus { transform: translateY(0); }
 .photo-filters { position: absolute; }
 
-.site-header { background: var(--ink); border-top: 4px solid var(--red); color: #fff; }
-.header-inner { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-.site-logo { flex: 0 0 auto; }
-.site-logo img { width: 142px; height: auto; }
-nav { display: flex; align-items: center; gap: clamp(1.25rem, 3vw, 2.75rem); }
-nav a, .site-footer a {
+.site-footer a {
   font-size: .74rem;
   font-weight: 700;
   letter-spacing: .08em;
   text-decoration: none;
   text-transform: uppercase;
 }
-nav a:not(.nav-join) { color: #c6c6c9; }
-nav a:hover, nav a[aria-current="page"], .site-footer a:hover { color: #fff; }
-nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: #f24040; text-underline-offset: .55rem; text-decoration-thickness: 2px; }
-.nav-join { padding: .7rem 1rem; background: var(--red); }
-.nav-join:hover, .join-button:hover { background: #a70a0f; }
+.site-footer a:hover { color: #fff; }
+.join-button:hover { background: #a70a0f; }
 
 .hero { padding-top: clamp(4.5rem, 8vw, 7rem); padding-bottom: clamp(3rem, 5vw, 4.5rem); }
 .eyebrow {
@@ -123,19 +115,9 @@ h1 span { color: var(--red); }
 .site-footer p { margin: 0; font-size: .72rem; }
 
 @media (max-width: 560px) {
-  .header-inner { min-height: 78px; gap: 1rem; }
-  .site-logo img { width: 100px; }
-  nav { gap: 1rem; }
-  nav a { font-size: .67rem; }
-  .nav-join { padding: .6rem .65rem; }
   .hero { padding-top: 4rem; }
   .portrait-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem .7rem; }
   .portrait figcaption { font-size: .78rem; }
   .join-inner, .footer-inner { align-items: flex-start; flex-direction: column; }
-}
-@media (max-width: 380px) {
-  .site-logo img { width: 90px; }
-  nav { gap: .6rem; }
-  nav a { font-size: .63rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
