@@ -80,14 +80,12 @@ h1 span { color: var(--red); }
 
 /* Cards group the roster by the subteams in the current-season roster. */
 .teams { padding-bottom: clamp(5rem, 8vw, 8rem); }
-.team-grid { columns: 2; column-gap: 1.5rem; }
+.team-grid { display: grid; gap: 1.5rem; }
 .team-card {
-  display: inline-block;
+  display: block;
   width: 100%;
-  margin: 0 0 1.5rem;
+  margin: 0;
   padding: clamp(1.25rem, 2.5vw, 2rem);
-  vertical-align: top;
-  break-inside: avoid;
   background: #fff;
   border: 1px solid #e5e5e9;
   border-top: 3px solid var(--red);
@@ -97,10 +95,10 @@ h1 span { color: var(--red); }
 .team-heading { margin-bottom: 1.25rem; }
 .team-kicker { margin: 0 0 .35rem; color: var(--red); font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .team-heading h2 { margin: 0; font-size: clamp(1.35rem, 2.4vw, 2rem); letter-spacing: -.025em; }
-.portrait-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem .75rem; }
-.portrait-grid--single { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.portrait-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 1rem .75rem; }
 .portrait { --brightness: 1.1; --contrast: .97; min-width: 0; margin: 0; }
 .portrait img { width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 5px; background: #e5e5e9; filter: brightness(var(--brightness)) contrast(var(--contrast)); }
+.portrait-placeholder { display: grid; place-items: center; aspect-ratio: 2 / 3; border-radius: 5px; background: #f0f0f2; color: #707079; font-family: "Mona Sans", sans-serif; font-size: clamp(1.5rem, 3vw, 2.5rem); }
 /* Keep Jacob G's portrait as the reference and lift the darker photographs. */
 .portrait--jacob1 { --brightness: 1; --contrast: 1; }
 .portrait--jason, .portrait--kyle { --brightness: 1.03; --contrast: .99; }
@@ -124,9 +122,6 @@ h1 span { color: var(--red); }
 .footer-inner { display: flex; justify-content: space-between; gap: 1rem; padding-top: 2rem; padding-bottom: 2rem; }
 .site-footer p { margin: 0; font-size: .72rem; }
 
-@media (max-width: 850px) {
-  .team-grid { columns: 1; }
-}
 @media (max-width: 560px) {
   .header-inner { min-height: 78px; gap: 1rem; }
   .site-logo img { width: 100px; }
