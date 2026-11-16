@@ -1,0 +1,146 @@
+@font-face {
+  font-family: "Mona Sans";
+  src: url("../assets/fonts/Mona-Sans-BoldWide.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --red: #c3080f;
+  --ink: #1a1a1a;
+  --muted: #64646d;
+  --line: #dedee2;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #f7f7f9;
+  color: var(--ink);
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+a:focus-visible { outline: 3px solid #fc3d21; outline-offset: 4px; }
+.wrap { width: min(100%, 1360px); margin-inline: auto; padding-inline: var(--gutter); }
+.skip-link {
+  position: absolute;
+  top: .5rem;
+  left: .5rem;
+  z-index: 2;
+  padding: .6rem 1rem;
+  background: #fff;
+  color: var(--ink);
+  transform: translateY(-150%);
+}
+.skip-link:focus { transform: translateY(0); }
+.photo-filters { position: absolute; }
+
+.site-header { background: var(--ink); border-top: 4px solid var(--red); color: #fff; }
+.header-inner { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.site-logo { flex: 0 0 auto; }
+.site-logo img { width: 142px; height: auto; }
+nav { display: flex; align-items: center; gap: clamp(1.25rem, 3vw, 2.75rem); }
+nav a, .site-footer a {
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+nav a:not(.nav-join) { color: #c6c6c9; }
+nav a:hover, nav a[aria-current="page"], .site-footer a:hover { color: #fff; }
+nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: #f24040; text-underline-offset: .55rem; text-decoration-thickness: 2px; }
+.nav-join { padding: .7rem 1rem; background: var(--red); }
+.nav-join:hover, .join-button:hover { background: #a70a0f; }
+
+.hero { padding-top: clamp(4.5rem, 8vw, 7rem); padding-bottom: clamp(3rem, 5vw, 4.5rem); }
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin: 0 0 1rem;
+  color: var(--red);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.eyebrow span { width: 28px; height: 2px; flex: 0 0 auto; background: currentColor; }
+h1, h2, h3 { font-family: "Mona Sans", sans-serif; line-height: 1.12; }
+h1 { margin: 0; font-size: clamp(2.75rem, 6vw, 5.5rem); letter-spacing: -.045em; }
+h1 span { color: var(--red); }
+
+/* Cards group the roster by the subteams in the current-season roster. */
+.teams { padding-bottom: clamp(5rem, 8vw, 8rem); }
+.team-grid { columns: 2; column-gap: 1.5rem; }
+.team-card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 1.5rem;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  vertical-align: top;
+  break-inside: avoid;
+  background: #fff;
+  border: 1px solid #e5e5e9;
+  border-top: 3px solid var(--red);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(20, 20, 25, .06);
+}
+.team-heading { margin-bottom: 1.25rem; }
+.team-kicker { margin: 0 0 .35rem; color: var(--red); font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.team-heading h2 { margin: 0; font-size: clamp(1.35rem, 2.4vw, 2rem); letter-spacing: -.025em; }
+.portrait-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem .75rem; }
+.portrait-grid--single { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.portrait { --brightness: 1.1; --contrast: .97; min-width: 0; margin: 0; }
+.portrait img { width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 5px; background: #e5e5e9; filter: brightness(var(--brightness)) contrast(var(--contrast)); }
+/* Keep Jacob G's portrait as the reference and lift the darker photographs. */
+.portrait--jacob1 { --brightness: 1; --contrast: 1; }
+.portrait--jason, .portrait--kyle { --brightness: 1.03; --contrast: .99; }
+.portrait--jacob2, .portrait--aaron { --brightness: 1.06; --contrast: .98; }
+.portrait--andrew { --brightness: 1.16; --contrast: .96; }
+.portrait--mathias img { filter: url("#lift-shadows"); }
+.portrait--lewis img { filter: url("#lift-shadows-more"); }
+.portrait figcaption { margin-top: .55rem; font-family: "Mona Sans", sans-serif; font-size: .78rem; line-height: 1.3; overflow-wrap: anywhere; }
+.portrait-role { display: block; margin-top: .2rem; color: var(--muted); font-family: "Roboto Mono", ui-monospace, monospace; font-size: .68rem; }
+.additional-members { margin-top: 1.5rem; padding-top: 1.15rem; border-top: 1px solid var(--line); }
+.additional-members h3 { margin: 0 0 .7rem; font-family: "Roboto Mono", ui-monospace, monospace; color: var(--muted); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.additional-members ul { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin: 0; padding: 0; list-style: none; }
+.additional-members li { font-size: .8rem; }
+
+.join { background: #252525; color: #fff; }
+.join-inner { display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding-top: clamp(3.5rem, 7vw, 6rem); padding-bottom: clamp(3.5rem, 7vw, 6rem); }
+.join .eyebrow { color: #ff7773; }
+.join h2 { margin: 0; font-size: clamp(1.8rem, 4vw, 3.5rem); letter-spacing: -.04em; }
+.join-button { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 1.5rem; background: var(--red); padding: 1rem 1.3rem; font-size: .75rem; font-weight: 700; letter-spacing: .05em; text-decoration: none; text-transform: uppercase; }
+.site-footer { background: var(--ink); color: #c6c6c9; }
+.footer-inner { display: flex; justify-content: space-between; gap: 1rem; padding-top: 2rem; padding-bottom: 2rem; }
+.site-footer p { margin: 0; font-size: .72rem; }
+
+@media (max-width: 850px) {
+  .team-grid { columns: 1; }
+}
+@media (max-width: 560px) {
+  .header-inner { min-height: 78px; gap: 1rem; }
+  .site-logo img { width: 100px; }
+  nav { gap: 1rem; }
+  nav a { font-size: .67rem; }
+  .nav-join { padding: .6rem .65rem; }
+  .hero { padding-top: 4rem; }
+  .portrait-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem .7rem; }
+  .portrait figcaption { font-size: .78rem; }
+  .join-inner, .footer-inner { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 380px) {
+  .site-logo img { width: 90px; }
+  nav { gap: .6rem; }
+  nav a { font-size: .63rem; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
