@@ -66,20 +66,9 @@ h1, h2, h3 { font-family: "Mona Sans", sans-serif; line-height: 1.12; }
 h1 { margin: 0; font-size: clamp(2.75rem, 6vw, 5.5rem); letter-spacing: -.045em; }
 h1 span { color: var(--red); }
 
-/* Cards group the roster by the subteams in the current-season roster. */
+/* Keep the roster sections in a single column. */
 .teams { padding-bottom: clamp(5rem, 8vw, 8rem); }
-.team-grid { display: grid; gap: 1.5rem; }
-.team-card {
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: clamp(1.25rem, 2.5vw, 2rem);
-  background: #fff;
-  border: 1px solid #e5e5e9;
-  border-top: 3px solid var(--red);
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(20, 20, 25, .06);
-}
+.team-grid { display: grid; gap: clamp(3rem, 5vw, 4rem); }
 .team-heading { margin-bottom: 1.25rem; }
 .team-kicker { margin: 0 0 .35rem; color: var(--red); font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .team-heading h2 { margin: 0; font-size: clamp(1.35rem, 2.4vw, 2rem); letter-spacing: -.025em; }
