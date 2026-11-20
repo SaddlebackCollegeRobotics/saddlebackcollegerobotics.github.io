@@ -41,6 +41,17 @@ Tags: blog, e-commerce, wide-blocks, block-styles, grid-layout, one-column, two-
 .stk-block-button{--stk-button-text-color: var(--buttonTextInitialColor);--stk-button-background-color: var(--buttonInitialColor)}.stk-block-button .stk-button{border-radius:var(--buttonBorderRadius, 3px)}.wp-block-stackable-columns.alignfull>.stk-row:not(.alignfull){width:var(--block-width) !important}
 
 /* Mona Sans (headings). Only Bold/SemiBold weights are actually used in the page. */
+.scr-hero-logos {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.scr-hero-logos .stk-724d770 { flex: 0 0 175px; margin: 0 !important; }
+@media (max-width: 767px) {
+	.scr-hero-logos { justify-content: center; }
+	.scr-hero-logos .stk-724d770 { flex-basis: 110px; }
+}
+
 @font-face {
 	font-family: 'Mona Sans Bold';
 	src: url('../fonts/Mona-Sans-BoldWide.woff2') format('woff2'),
@@ -122,7 +133,7 @@ html {
 .lightbox {
 	position: fixed;
 	inset: 0;
-	z-index: 1000;
+	z-index: 10000;
 	display: none;
 	align-items: center;
 	justify-content: center;

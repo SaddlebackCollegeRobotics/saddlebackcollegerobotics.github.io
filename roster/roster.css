@@ -1,0 +1,135 @@
+@font-face {
+  font-family: "Mona Sans";
+  src: url("../assets/fonts/Mona-Sans-BoldWide.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --red: #c3080f;
+  --ink: #1a1a1a;
+  --muted: #64646d;
+  --line: #dedee2;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #f7f7f9;
+  color: var(--ink);
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+a:focus-visible { outline: 3px solid #fc3d21; outline-offset: 4px; }
+.wrap { width: min(100%, 1360px); margin-inline: auto; padding-inline: var(--gutter); }
+.skip-link {
+  position: absolute;
+  top: .5rem;
+  left: .5rem;
+  z-index: 2;
+  padding: .6rem 1rem;
+  background: #fff;
+  color: var(--ink);
+  transform: translateY(-150%);
+}
+.skip-link:focus { transform: translateY(0); }
+.photo-filters { position: absolute; }
+
+.site-footer a {
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.site-footer a:hover { color: #fff; }
+.join-button:hover { background: #a70a0f; }
+
+.hero { padding-top: clamp(4.5rem, 8vw, 7rem); padding-bottom: clamp(3rem, 5vw, 4.5rem); }
+.team-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #e9e9ed;
+}
+h1, h2, h3 { font-family: "Mona Sans", sans-serif; line-height: 1.12; }
+h1 { margin: 0; font-size: clamp(2.75rem, 6vw, 5.5rem); letter-spacing: -.045em; }
+h1 span { color: var(--red); }
+
+/* Keep the roster sections in a single column. */
+.teams { padding-bottom: clamp(5rem, 8vw, 8rem); }
+.team-grid { display: grid; gap: clamp(3rem, 5vw, 4rem); }
+.team-heading { margin-bottom: 1.25rem; }
+.team-heading h2 { margin: 0; font-size: clamp(1.35rem, 2.4vw, 2rem); letter-spacing: -.025em; }
+.portrait-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 1rem .75rem; }
+.portrait { --brightness: 1.04; --contrast: .99; min-width: 0; margin: 0; }
+.portrait-photo { position: relative; overflow: hidden; aspect-ratio: 4 / 5; border-radius: 5px; background: #e5e5e9; }
+.portrait-photo img {
+  position: absolute;
+  width: var(--photo-width, 100%);
+  max-width: none;
+  height: auto;
+  left: var(--photo-left, 0%);
+  top: var(--photo-top, 0%);
+  transform: rotate(var(--photo-rotate, 0deg));
+  transform-origin: var(--photo-origin, 50% 50%);
+  filter: url("#lift-shadows-soft") brightness(var(--brightness)) contrast(var(--contrast));
+}
+.portrait-placeholder { display: grid; place-items: center; aspect-ratio: 4 / 5; border-radius: 5px; background: #f0f0f2; color: #707079; font-family: "Mona Sans", sans-serif; font-size: clamp(1.5rem, 3vw, 2.5rem); }
+/* Frame each existing photograph around the face while retaining its original file. */
+.portrait--aaron { --photo-width: 150.4%; --photo-left: -21.4%; --photo-top: -17.6%; --photo-origin: 47.5% 28.6%; --photo-rotate: 3.7deg; }
+.portrait--andrew { --photo-width: 127.4%; --photo-left: -15.1%; --photo-top: -27.6%; --photo-origin: 51.1% 40.3%; --photo-rotate: 1.2deg; }
+.portrait--brendon { --photo-width: 137.0%; --photo-left: -19.9%; --photo-top: -36.7%; --photo-origin: 51.0% 43.0%; --photo-rotate: -0.3deg; }
+.portrait--byron { --photo-width: 151.5%; --photo-left: -25.5%; --photo-top: -35.5%; --photo-origin: 49.8% 38.2%; --photo-rotate: 3.1deg; }
+.portrait--cameron { --photo-width: 149.3%; --photo-left: -17.0%; --photo-top: -32.8%; --photo-origin: 44.9% 37.3%; --photo-rotate: 7.5deg; }
+.portrait--dean { --photo-width: 148.1%; --photo-left: -17.9%; --photo-top: -27.9%; --photo-origin: 45.8% 34.8%; --photo-rotate: 2.4deg; }
+.portrait--ethan { --photo-width: 141.8%; --photo-left: -18.8%; --photo-top: -45.1%; --photo-origin: 48.5% 46.5%; --photo-rotate: 3.3deg; }
+.portrait--ghazal { --photo-width: 147.1%; --photo-left: -22.1%; --photo-top: -39.6%; --photo-origin: 49.0% 41.7%; --photo-rotate: -6.1deg; }
+.portrait--jack { --photo-width: 158.7%; --photo-left: -24.3%; --photo-top: -49.8%; --photo-origin: 46.8% 44.0%; --photo-rotate: 3.3deg; }
+.portrait--jacob1 { --photo-width: 188.7%; --photo-left: -40.8%; --photo-top: -47.1%; --photo-origin: 48.1% 35.8%; --photo-rotate: 4.4deg; }
+.portrait--jacob2 { --photo-width: 168.1%; --photo-left: -27.6%; --photo-top: -37.6%; --photo-origin: 46.2% 35.5%; --photo-rotate: 2.2deg; }
+.portrait--jason { --photo-width: 160.0%; --photo-left: -26.2%; --photo-top: -31.5%; --photo-origin: 47.6% 34.1%; --photo-rotate: -3.1deg; }
+.portrait--kyle { --photo-width: 142.9%; --photo-left: -17.7%; --photo-top: -19.8%; --photo-origin: 47.4% 31.4%; --photo-rotate: 3.6deg; }
+.portrait--lewis { --photo-width: 156.3%; --photo-left: -16.1%; --photo-top: -45.9%; --photo-origin: 42.3% 42.6%; --photo-rotate: 7.3deg; }
+.portrait--mathias { --photo-width: 158.7%; --photo-left: -27.3%; --photo-top: -48.7%; --photo-origin: 48.7% 43.4%; --photo-rotate: 1.9deg; }
+.portrait--olle { --photo-width: 122.7%; --photo-left: -10.4%; --photo-top: -16.9%; --photo-origin: 49.2% 34.6%; --photo-rotate: 6.1deg; }
+.portrait--sam { --photo-width: 142.9%; --photo-left: -20.7%; --photo-top: -28.1%; --photo-origin: 49.5% 36.2%; --photo-rotate: -1.1deg; }
+.portrait--tyler { --photo-width: 130.7%; --photo-left: -10.8%; --photo-top: -30.6%; --photo-origin: 46.5% 41.2%; --photo-rotate: 6.3deg; }
+/* Preserve both Jacobs as references and lift shadows without washing out highlights. */
+.portrait--jacob1 img { filter: none; }
+.portrait--jacob2 img { filter: brightness(1.06) contrast(.98); }
+.portrait--jason, .portrait--kyle { --brightness: 1.02; }
+.portrait--andrew { --brightness: 1.06; }
+.portrait--aaron img { filter: url("#lift-shadows-soft"); }
+.portrait--mathias img { filter: url("#lift-shadows") brightness(1.02); }
+.portrait--lewis img { filter: url("#lift-shadows-more") brightness(1.02); }
+.portrait figcaption { margin-top: .55rem; font-family: "Mona Sans", sans-serif; font-size: .78rem; line-height: 1.3; overflow-wrap: anywhere; }
+.portrait-role { display: block; margin-top: .2rem; color: var(--muted); font-family: "Roboto Mono", ui-monospace, monospace; font-size: .68rem; }
+.additional-members { margin: 1.25rem 0 0; font-size: .8rem; }
+.additional-members strong { color: var(--muted); font-weight: 700; }
+
+.join { background: #252525; color: #fff; }
+.join-inner { display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding-top: clamp(3.5rem, 7vw, 6rem); padding-bottom: clamp(3.5rem, 7vw, 6rem); }
+.join h2 { margin: 0; font-size: clamp(1.8rem, 4vw, 3.5rem); letter-spacing: -.04em; }
+.join-button { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 1.5rem; background: var(--red); padding: 1rem 1.3rem; font-size: .75rem; font-weight: 700; letter-spacing: .05em; text-decoration: none; text-transform: uppercase; }
+.site-footer { background: var(--ink); color: #c6c6c9; }
+.footer-inner { display: flex; justify-content: space-between; gap: 1rem; padding-top: 2rem; padding-bottom: 2rem; }
+.site-footer p { margin: 0; font-size: .72rem; }
+
+@media (max-width: 560px) {
+  .hero { padding-top: 4rem; }
+  .portrait-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem .7rem; }
+  .portrait figcaption { font-size: .78rem; }
+  .join-inner, .footer-inner { align-items: flex-start; flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
