@@ -70,7 +70,6 @@ h1 span { color: var(--red); }
 .teams { padding-bottom: clamp(5rem, 8vw, 8rem); }
 .team-grid { display: grid; gap: clamp(3rem, 5vw, 4rem); }
 .team-heading { margin-bottom: 1.25rem; }
-.team-kicker { margin: 0 0 .35rem; color: var(--red); font-size: .66rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .team-heading h2 { margin: 0; font-size: clamp(1.35rem, 2.4vw, 2rem); letter-spacing: -.025em; }
 .portrait-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 1rem .75rem; }
 .portrait { --brightness: 1.04; --contrast: .99; min-width: 0; margin: 0; }
@@ -116,10 +115,8 @@ h1 span { color: var(--red); }
 .portrait--lewis img { filter: url("#lift-shadows-more") brightness(1.02); }
 .portrait figcaption { margin-top: .55rem; font-family: "Mona Sans", sans-serif; font-size: .78rem; line-height: 1.3; overflow-wrap: anywhere; }
 .portrait-role { display: block; margin-top: .2rem; color: var(--muted); font-family: "Roboto Mono", ui-monospace, monospace; font-size: .68rem; }
-.additional-members { margin-top: 1.5rem; padding-top: 1.15rem; border-top: 1px solid var(--line); }
-.additional-members h3 { margin: 0 0 .7rem; font-family: "Roboto Mono", ui-monospace, monospace; color: var(--muted); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-.additional-members ul { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin: 0; padding: 0; list-style: none; }
-.additional-members li { font-size: .8rem; }
+.additional-members { margin: 1.5rem 0 0; padding-top: 1.15rem; border-top: 1px solid var(--line); font-size: .8rem; }
+.additional-members strong { color: var(--muted); font-weight: 700; }
 
 .join { background: #252525; color: #fff; }
 .join-inner { display: flex; align-items: end; justify-content: space-between; gap: 2rem; padding-top: clamp(3.5rem, 7vw, 6rem); padding-bottom: clamp(3.5rem, 7vw, 6rem); }
