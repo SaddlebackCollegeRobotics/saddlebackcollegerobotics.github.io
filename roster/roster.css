@@ -54,6 +54,14 @@ a:focus-visible { outline: 3px solid #fc3d21; outline-offset: 4px; }
 .join-button:hover { background: #a70a0f; }
 
 .hero { padding-top: clamp(4.5rem, 8vw, 7rem); padding-bottom: clamp(3rem, 5vw, 4.5rem); }
+.team-photo-placeholder {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #e9e9ed;
+}
 h1, h2, h3 { font-family: "Mona Sans", sans-serif; line-height: 1.12; }
 h1 { margin: 0; font-size: clamp(2.75rem, 6vw, 5.5rem); letter-spacing: -.045em; }
 h1 span { color: var(--red); }
