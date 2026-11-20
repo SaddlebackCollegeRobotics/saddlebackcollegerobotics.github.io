@@ -115,7 +115,7 @@ h1 span { color: var(--red); }
 .portrait--lewis img { filter: url("#lift-shadows-more") brightness(1.02); }
 .portrait figcaption { margin-top: .55rem; font-family: "Mona Sans", sans-serif; font-size: .78rem; line-height: 1.3; overflow-wrap: anywhere; }
 .portrait-role { display: block; margin-top: .2rem; color: var(--muted); font-family: "Roboto Mono", ui-monospace, monospace; font-size: .68rem; }
-.additional-members { margin: 1.5rem 0 0; padding-top: 1.15rem; border-top: 1px solid var(--line); font-size: .8rem; }
+.additional-members { margin: 1.25rem 0 0; font-size: .8rem; }
 .additional-members strong { color: var(--muted); font-weight: 700; }
 
 .join { background: #252525; color: #fff; }
